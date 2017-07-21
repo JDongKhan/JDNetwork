@@ -1,4 +1,4 @@
 dependencies: \
-  /Users/wangjindong/Documents/github/JDNetwork/Sources/JDNetWork.m \
-  /Users/wangjindong/Documents/github/JDNetwork/Sources/JDNetWork.h \
-  /Users/wangjindong/Documents/github/JDNetwork/Sources/JDRequest.h
+  /Users/wangjindong/Documents/github/JDNetwork/Framework/JDNetWork.m \
+  /Users/wangjindong/Documents/github/JDNetwork/Framework/JDNetWork.h \
+  /Users/wangjindong/Documents/github/JDNetwork/Framework/JDRequest.h

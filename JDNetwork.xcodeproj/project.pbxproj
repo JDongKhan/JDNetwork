@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D4EE3991F21F2240011EDCD /* JDNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3921F21F2240011EDCD /* JDNetWork.m */; };
+		4D4EE39A1F21F2240011EDCD /* JDNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */; };
+		4D4EE39B1F21F2240011EDCD /* JDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3961F21F2240011EDCD /* JDRequest.m */; };
+		4D4EE39C1F21F2240011EDCD /* UIView+hs_network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3981F21F2240011EDCD /* UIView+hs_network.m */; };
 		4DC747841F20C8E90020A29F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747831F20C8E90020A29F /* main.m */; };
 		4DC747871F20C8E90020A29F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747861F20C8E90020A29F /* AppDelegate.m */; };
 		4DC7478A1F20C8E90020A29F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747891F20C8E90020A29F /* ViewController.m */; };
 		4DC7478D1F20C8E90020A29F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478B1F20C8E90020A29F /* Main.storyboard */; };
 		4DC7478F1F20C8E90020A29F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478E1F20C8E90020A29F /* Assets.xcassets */; };
 		4DC747921F20C8E90020A29F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC747901F20C8E90020A29F /* LaunchScreen.storyboard */; };
-		4DC7479C1F20C9200020A29F /* JDNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC7479B1F20C9200020A29F /* JDNetWork.m */; };
-		4DC7479F1F20C9260020A29F /* JDRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC7479E1F20C9260020A29F /* JDRequest.m */; };
-		4DC747A21F20C9890020A29F /* JDNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747A11F20C9890020A29F /* JDNetworkCache.m */; };
-		4DC747A51F20C9C30020A29F /* UIView+hs_network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747A41F20C9C30020A29F /* UIView+hs_network.m */; };
 		4DC747AA1F21C8590020A29F /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747A91F21C8590020A29F /* BaseRequest.m */; };
 		4DC747AD1F21DF260020A29F /* FirstRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747AC1F21DF260020A29F /* FirstRequest.m */; };
 		FBF81F5230CA5F00BCEFFAC0 /* libPods-JDNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */; };
@@ -24,6 +24,14 @@
 
 /* Begin PBXFileReference section */
 		3775C6F5CE231D2214A9B4C4 /* Pods-JDNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDNetwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork.debug.xcconfig"; sourceTree = "<group>"; };
+		4D4EE3911F21F2240011EDCD /* JDNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetWork.h; sourceTree = "<group>"; };
+		4D4EE3921F21F2240011EDCD /* JDNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetWork.m; sourceTree = "<group>"; };
+		4D4EE3931F21F2240011EDCD /* JDNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetworkCache.h; sourceTree = "<group>"; };
+		4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetworkCache.m; sourceTree = "<group>"; };
+		4D4EE3951F21F2240011EDCD /* JDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDRequest.h; sourceTree = "<group>"; };
+		4D4EE3961F21F2240011EDCD /* JDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDRequest.m; sourceTree = "<group>"; };
+		4D4EE3971F21F2240011EDCD /* UIView+hs_network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+hs_network.h"; sourceTree = "<group>"; };
+		4D4EE3981F21F2240011EDCD /* UIView+hs_network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+hs_network.m"; sourceTree = "<group>"; };
 		4DC7477F1F20C8E90020A29F /* JDNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC747831F20C8E90020A29F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DC747851F20C8E90020A29F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -34,14 +42,6 @@
 		4DC7478E1F20C8E90020A29F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DC747911F20C8E90020A29F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DC747931F20C8E90020A29F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DC7479A1F20C9200020A29F /* JDNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetWork.h; sourceTree = "<group>"; };
-		4DC7479B1F20C9200020A29F /* JDNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetWork.m; sourceTree = "<group>"; };
-		4DC7479D1F20C9260020A29F /* JDRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDRequest.h; sourceTree = "<group>"; };
-		4DC7479E1F20C9260020A29F /* JDRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDRequest.m; sourceTree = "<group>"; };
-		4DC747A01F20C9890020A29F /* JDNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetworkCache.h; sourceTree = "<group>"; };
-		4DC747A11F20C9890020A29F /* JDNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetworkCache.m; sourceTree = "<group>"; };
-		4DC747A31F20C9C30020A29F /* UIView+hs_network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+hs_network.h"; sourceTree = "<group>"; };
-		4DC747A41F20C9C30020A29F /* UIView+hs_network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+hs_network.m"; sourceTree = "<group>"; };
 		4DC747A81F21C8590020A29F /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
 		4DC747A91F21C8590020A29F /* BaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRequest.m; sourceTree = "<group>"; };
 		4DC747AB1F21DF260020A29F /* FirstRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRequest.h; sourceTree = "<group>"; };
@@ -62,10 +62,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D4EE3901F21F2240011EDCD /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				4D4EE3911F21F2240011EDCD /* JDNetWork.h */,
+				4D4EE3921F21F2240011EDCD /* JDNetWork.m */,
+				4D4EE3931F21F2240011EDCD /* JDNetworkCache.h */,
+				4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */,
+				4D4EE3951F21F2240011EDCD /* JDRequest.h */,
+				4D4EE3961F21F2240011EDCD /* JDRequest.m */,
+				4D4EE3971F21F2240011EDCD /* UIView+hs_network.h */,
+				4D4EE3981F21F2240011EDCD /* UIView+hs_network.m */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 		4DC747761F20C8E90020A29F = {
 			isa = PBXGroup;
 			children = (
-				4DC747991F20C8F80020A29F /* Sources */,
+				4D4EE3901F21F2240011EDCD /* Framework */,
 				4DC747811F20C8E90020A29F /* JDNetwork */,
 				4DC747801F20C8E90020A29F /* Products */,
 				D7B0283802988EEE62131489 /* Pods */,
@@ -107,21 +122,6 @@
 				4DC747831F20C8E90020A29F /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4DC747991F20C8F80020A29F /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				4DC747A31F20C9C30020A29F /* UIView+hs_network.h */,
-				4DC747A41F20C9C30020A29F /* UIView+hs_network.m */,
-				4DC747A01F20C9890020A29F /* JDNetworkCache.h */,
-				4DC747A11F20C9890020A29F /* JDNetworkCache.m */,
-				4DC7479D1F20C9260020A29F /* JDRequest.h */,
-				4DC7479E1F20C9260020A29F /* JDRequest.m */,
-				4DC7479A1F20C9200020A29F /* JDNetWork.h */,
-				4DC7479B1F20C9200020A29F /* JDNetWork.m */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		7FFAD2F8FBE6ACC2E69B11FA /* Frameworks */ = {
@@ -263,15 +263,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DC747A21F20C9890020A29F /* JDNetworkCache.m in Sources */,
-				4DC747A51F20C9C30020A29F /* UIView+hs_network.m in Sources */,
 				4DC747AA1F21C8590020A29F /* BaseRequest.m in Sources */,
+				4D4EE39A1F21F2240011EDCD /* JDNetworkCache.m in Sources */,
 				4DC7478A1F20C8E90020A29F /* ViewController.m in Sources */,
+				4D4EE39C1F21F2240011EDCD /* UIView+hs_network.m in Sources */,
+				4D4EE3991F21F2240011EDCD /* JDNetWork.m in Sources */,
 				4DC747871F20C8E90020A29F /* AppDelegate.m in Sources */,
+				4D4EE39B1F21F2240011EDCD /* JDRequest.m in Sources */,
 				4DC747AD1F21DF260020A29F /* FirstRequest.m in Sources */,
-				4DC7479C1F20C9200020A29F /* JDNetWork.m in Sources */,
 				4DC747841F20C8E90020A29F /* main.m in Sources */,
-				4DC7479F1F20C9260020A29F /* JDRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
