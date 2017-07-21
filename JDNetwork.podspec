@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary      = "one line of tableview"
 
   s.description  = <<-DESC
-			one line for SimplifyTableView
+			AFNetworking 
                    DESC
 
   s.homepage     = "https://github.com/wangjindong/JDNetwork.git"
@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
 
-  s.frameworks = 'Foundation', 'CoreGraphics', 'UIKit'
+  s.frameworks = 'Foundation'
   
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -102,9 +102,5 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   s.requires_arc = true
-
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
-  s.dependency 'UITableView+FDTemplateLayoutCell', '~> 1.3'
 
 end
