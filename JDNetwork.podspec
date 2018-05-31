@@ -3,14 +3,14 @@
 Pod::Spec.new do |s|
 
   s.name         = "JDNetwork"
-  s.version      = "2.3.8"
+  s.version      = '2.3.9' 
   s.summary      = "one line of tableview"
 
   s.description  = <<-DESC
 			AFNetworking 
                    DESC
 
-  s.homepage     = "https://github.com/wangjindong/JDNetwork.git"
+  s.homepage     = "https://github.com/JDongKhan/JDNetwork.git"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/wangjindong/JDNetwork.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/JDongKhan/JDNetwork.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
