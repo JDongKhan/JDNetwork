@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "JDNetwork"
-s.version      = '2.3.9' 
+s.version      = '2.4.0' 
 s.summary      = "JDNetwork"
 
 s.description  = <<-DESC
