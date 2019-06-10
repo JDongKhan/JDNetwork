@@ -9,40 +9,43 @@
 #import <CommonCrypto/CommonDigest.h>
 
 #ifdef DEBUG
-#define DebugLog(...) NSLog(__VA_ARGS__)
+#define JDNetworkDebugLog(...) NSLog(__VA_ARGS__)
 #else
-#define DebugLog(...)
+#define JDNetworkDebugLog(...)
 #endif
 
 @implementation JDNetworkCache
 
-+(BOOL)saveJsonResponseToCacheFile:(id)jsonResponse andURL:(NSString *)URL {
-    return [JDNetworkCache saveJsonResponseToCacheFile:jsonResponse andURL:URL andVersion:nil];
++ (BOOL)saveResponseToCacheFile:(id)response andURL:(NSString *)keyForCaching {
+    return [JDNetworkCache saveResponseToCacheFile:response andURL:keyForCaching andVersion:nil];
 }
 
-+(BOOL)saveJsonResponseToCacheFile:(id)jsonResponse andURL:(NSString *)URL andVersion:(NSString *)version {
-    if(jsonResponse!=nil) {
-        BOOL state =[NSKeyedArchiver archiveRootObject:jsonResponse toFile:[self cacheFilePathWithURL:URL version:version]];
-        if(state)  DebugLog(@"缓存写入/更新成功");
++ (BOOL)saveResponseToCacheFile:(id)response andURL:(NSString *)keyForCaching andVersion:(NSString *)version {
+    if(response!=nil) {
+        BOOL state =[NSKeyedArchiver archiveRootObject:response toFile:[self cacheFilePathWithURL:keyForCaching version:version]];
+        if(state) {
+            JDNetworkDebugLog(@"缓存写入/更新成功");
+        }
         return state;
     }
     return NO;
 }
 
-+(id )cacheJsonWithURL:(NSString *)URL {
-    return [JDNetworkCache cacheJsonWithURL:URL andVersion:nil];
-}
-+(id )cacheJsonWithURL:(NSString *)URL andVersion:(NSString *)version {
-    NSString *path = [self cacheFilePathWithURL:URL version:version];
-    id cacheJson;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:path isDirectory:nil] == YES) {
-        cacheJson = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    }
-    return cacheJson;
++ (id )cacheWithURL:(NSString *)keyForCaching {
+    return [JDNetworkCache cacheWithURL:keyForCaching andVersion:nil];
 }
 
-+ (NSString *)cacheFilePathWithURL:(NSString *)URL version:(NSString *)version {
++ (id )cacheWithURL:(NSString *)keyForCaching andVersion:(NSString *)version {
+    NSString *path = [self cacheFilePathWithURL:keyForCaching version:version];
+    id cacheObject;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path isDirectory:nil] == YES) {
+        cacheObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    }
+    return cacheObject;
+}
+
++ (NSString *)cacheFilePathWithURL:(NSString *)keyForCaching version:(NSString *)version {
     
     NSString *pathOfLibrary = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = pathOfLibrary;
@@ -52,16 +55,16 @@
     path = [path stringByAppendingPathComponent:@"JDNetworkCache"];
     
     [self checkDirectory:path];//check路径
-    DebugLog(@"path = %@",path);
+    JDNetworkDebugLog(@"path = %@",path);
     
     //文件名
-    NSString *cacheFileNameString = [NSString stringWithFormat:@"URL:%@ AppVersion:%@",URL,[self appVersionString]];
+    NSString *cacheFileNameString = [NSString stringWithFormat:@"URL:%@ AppVersion:%@",keyForCaching,[self appVersionString]];
     NSString *cacheFileName = [self md5StringFromString:cacheFileNameString];
     path = [path stringByAppendingPathComponent:cacheFileName];
     return path;
 }
 
-+(void)checkDirectory:(NSString *)path {
++ (void)checkDirectory:(NSString *)path {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDir;
     if (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {
@@ -80,18 +83,19 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES
                                                attributes:nil error:&error];
     if (error) {
-        DebugLog(@"create cache directory failed, error = %@", error);
+        JDNetworkDebugLog(@"create cache directory failed, error = %@", error);
     } else {
         
         [self addDoNotBackupAttribute:path];
     }
 }
+
 + (void)addDoNotBackupAttribute:(NSString *)path {
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
     [url setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (error) {
-        DebugLog(@"error to set do not backup attribute, error = %@", error);
+        JDNetworkDebugLog(@"error to set do not backup attribute, error = %@", error);
     }
 }
 
@@ -111,8 +115,8 @@
     
     return outputString;
 }
+
 + (NSString *)appVersionString {
-    
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
