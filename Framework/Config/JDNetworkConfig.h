@@ -38,12 +38,15 @@ typedef NS_ENUM(NSInteger, JDNetworkCachePolicy) {
 
 @interface JDNetworkConfig : NSObject
 
+/**
+ base url
+ */
 @property (nonatomic, copy) NSString *baseURLString;
 
 /**
  请求的url
  */
-@property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, copy) NSString *pathOrFullURLString;
 
 /**
  请求的参数

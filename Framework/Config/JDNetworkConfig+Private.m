@@ -58,7 +58,6 @@
 - (NSMutableURLRequest *)request {
     NSMutableURLRequest *request = nil;
     NSError *serializationError = nil;
-    NSString *fullURLString = [NSURL URLWithString:self.urlString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
     if(self.usedMultipartFormData){
         //TODO下面的方法没有测试，待完善
         //有文件
@@ -73,7 +72,7 @@
                 _files[key] = value;
             }
         }
-        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:self.fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             for (NSString *key in _files) {
                 id value = _files[key];
                 [formData
@@ -90,7 +89,7 @@
         }
         
     }else{
-        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:fullURLString parameters:self.parameters error:&serializationError];
+        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:self.fullURLString parameters:self.parameters error:&serializationError];
         
         if (serializationError != nil) {
             [self reportError:serializationError];
@@ -139,9 +138,9 @@
 }
 
 - (NSString *)keyForCaching {
-    NSString *urlString = self.urlString;
+    NSString *urlString = self.fullURLString;
     NSURL *url = [NSURL URLWithString:urlString];
-    NSAssert(url != nil, @"The url is nil of %@", self.urlString);
+    NSAssert(url != nil, @"The url is nil of %@", self.fullURLString);
     NSString *query = AFQueryStringFromParameters(self.parameters);
     if (query.length > 0) {
         NSString *queryToAppend = [NSString stringWithFormat:url.query ? @"&%@" : @"?%@", query];
@@ -150,5 +149,8 @@
     return urlString;
 }
 
+- (NSString *)fullURLString {
+    return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
+}
 
 @end

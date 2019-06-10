@@ -22,7 +22,7 @@
     return ^(NSString *pathOrFullURLString){
         JDNetwork *requst = [[self alloc] init];
         JDNetworkConfig *config = [[JDNetworkConfig alloc] init];
-        config.urlString = pathOrFullURLString;
+        config.pathOrFullURLString = pathOrFullURLString;
         config.HTTPMethod = @"GET";
         requst.config = config;
         return requst;
@@ -33,7 +33,7 @@
     return ^(NSString *pathOrFullURLString){
         JDNetwork *requst = [[self alloc] init];
         JDNetworkConfig *config = [[JDNetworkConfig alloc] init];
-        config.urlString = pathOrFullURLString;
+        config.pathOrFullURLString = pathOrFullURLString;
         config.HTTPMethod = @"POST";
         requst.config = config;
         return requst;
@@ -53,7 +53,7 @@
 - (JDNetwork *(^)(NSString *))get {
     __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *pathOrFullURLString){
-        _weaskSelf.config.urlString = pathOrFullURLString;
+        _weaskSelf.config.pathOrFullURLString = pathOrFullURLString;
         _weaskSelf.config.HTTPMethod = @"GET";
         return _weaskSelf;
     };
@@ -62,7 +62,7 @@
 - (JDNetwork *(^)(NSString *))post {
     __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *pathOrFullURLString){
-        _weaskSelf.config.urlString = pathOrFullURLString;
+        _weaskSelf.config.pathOrFullURLString = pathOrFullURLString;
         _weaskSelf.config.HTTPMethod = @"POST";
         return _weaskSelf;
     };
@@ -155,10 +155,6 @@
     };
 }
 
-- (BOOL)running {
-    return self.operation.running;
-}
-
 - (void (^)(void))cancel {
     __weak JDNetwork *_weaskSelf = self;
     return ^(void) {
@@ -166,6 +162,9 @@
     };
 }
 
+- (BOOL)running {
+    return self.operation.running;
+}
 
 #pragma mark 私有方法 -------------
 
