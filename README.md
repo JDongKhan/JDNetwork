@@ -7,6 +7,7 @@ PS:出于兴趣写点快速开发的组件，但是没有线上使用过，就�
 使用效果是
 ```c
 - (IBAction)requestAction4:(UIButton *)sender {
+    //因为url配置过了 我就不配置了
     [JDNetwork userService]
     .get(@"user/1.htm")
     .parametersForKey(@"username",@"wjd")
@@ -14,7 +15,6 @@ PS:出于兴趣写点快速开发的组件，但是没有线上使用过，就�
 }
 
 - (IBAction)requestAction2:(id)sender {
-    //因为url配置过了 我就不配置了
     JDNetwork
     .get(@"https://www.baidu.com")
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
