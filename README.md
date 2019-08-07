@@ -9,6 +9,7 @@ PS:出于兴趣写点快速开发的组件。
 ###  一、使用方便
 
     -- 链式调用
+    
     -- 方法简洁
 
 ###  二、支持拦截器
@@ -34,10 +35,11 @@ PS:出于兴趣写点快速开发的组件。
 
 ```objc
 
-
+//最简单的写法
 - (IBAction)requestAction1:(id)sender {
-    JDNetwork.post(@"")
-    .parametersForKey(@"username",@"wjd")
+    JDNetwork
+    .post(@"https://baidu.com")
+    .parametersForKey(@"username",@"jd")
     .start();
 }
 

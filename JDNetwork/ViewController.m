@@ -32,9 +32,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+//最简单的写法
 - (IBAction)requestAction1:(id)sender {
-    JDNetwork.post(@"")
-    .parametersForKey(@"username",@"wjd")
+    JDNetwork
+    .post(@"https://baidu.com")
+    .parametersForKey(@"username",@"jd")
     .start();
 }
 
