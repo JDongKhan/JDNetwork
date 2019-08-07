@@ -26,11 +26,36 @@ PS:出于兴趣写点快速开发的组件。
     
     5、等等
     
-###  三、易扩展
+###  三、结构清晰
+
+    该项目共分为五小模块（每个模块都很小，所以是小模块）
+    
+    1、Operation：核心网络请求逻辑都在这里
+    
+    2、Interceptor：拦截器
+    
+    3、Cache：基于拦截器实现的缓存模块
+    
+    4、Entity：自定义的request、response等，方便管理与使用
+    
+    5、JDNetwork：改类是对外使用的唯一入口，里面包含了很多常用的功能。比如
+    
+        5.1、timeoutInterval：超时设置
+        
+        5.2、parameterEncoding：请求格式
+        
+        5.3、responseEncoding：响应格式
+        
+        5.4、parameters：参数设置
+        
+        5.5、get/post/delete/put/head：http请求方法
+        
+        5.6、successResponse/errorResponse:成功、失败回调
+        
+        5.7、其他
 
 
-
-###  四、等等
+###  四、易扩展
 
 
 
@@ -41,7 +66,7 @@ PS:出于兴趣写点快速开发的组件。
 //最简单的写法
 - (IBAction)requestAction1:(id)sender {
     JDNetwork
-    .post(@"https://baidu.com")
+    .POST(@"https://baidu.com")
     .parametersForKey(@"username",@"jd")
     .start();
 }
@@ -49,7 +74,7 @@ PS:出于兴趣写点快速开发的组件。
 //登录拦截器
 - (IBAction)requestAction2:(id)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
@@ -62,7 +87,7 @@ PS:出于兴趣写点快速开发的组件。
 //缓存拦截器
 - (IBAction)requestAction3:(id)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
@@ -75,7 +100,7 @@ PS:出于兴趣写点快速开发的组件。
 //登录+缓存拦截器
 - (IBAction)requestAction4:(UIButton *)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .addInterceptor([[HttpLoggingInterceptor alloc] init])
     .addInterceptor([[XMLInterceptor alloc] init])
@@ -92,7 +117,7 @@ PS:出于兴趣写点快速开发的组件。
 - (IBAction)requestAction5:(id)sender {
     NSString *url = @"/api/openapi/BaikeLemmaCardApi";
     JDNetworkManager.baiduService
-    .get(url)
+    .GET(url)
     .parametersForKey(@"scope", @"103")
     .parametersForKey(@"format", @"json")
     .parametersForKey(@"appid", @"379020")

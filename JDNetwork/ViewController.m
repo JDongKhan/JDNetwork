@@ -35,7 +35,7 @@
 //最简单的写法
 - (IBAction)requestAction1:(id)sender {
     JDNetwork
-    .post(@"https://baidu.com")
+    .POST(@"https://baidu.com")
     .parametersForKey(@"username",@"jd")
     .start();
 }
@@ -43,7 +43,7 @@
 //登录拦截器
 - (IBAction)requestAction2:(id)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
@@ -56,7 +56,7 @@
 //缓存拦截器
 - (IBAction)requestAction3:(id)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
@@ -69,7 +69,7 @@
 //登录+缓存拦截器
 - (IBAction)requestAction4:(UIButton *)sender {
     JDNetwork
-    .get(@"https://baidu.com")
+    .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .addInterceptor([[HttpLoggingInterceptor alloc] init])
     .addInterceptor([[XMLInterceptor alloc] init])
@@ -86,7 +86,7 @@
 - (IBAction)requestAction5:(id)sender {
     NSString *url = @"/api/openapi/BaikeLemmaCardApi";
     JDNetworkManager.baiduService
-    .get(url)
+    .GET(url)
     .parametersForKey(@"scope", @"103")
     .parametersForKey(@"format", @"json")
     .parametersForKey(@"appid", @"379020")

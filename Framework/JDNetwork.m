@@ -16,23 +16,67 @@
 
 @implementation JDNetwork
 
-+ (JDNetwork *(^)(NSString *))get {
-    return ^(NSString *pathOrFullURLString){
++ (JDNetwork *(^)(NSString *))GET {
+    return ^(NSString *fullURLString){
         JDNetwork *requst = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
-        entity.request.pathOrFullURLString = pathOrFullURLString;
+        entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"GET";
         requst->entity = entity;
         return requst;
     };
 }
 
-+ (JDNetwork *(^)(NSString *))post {
-    return ^(NSString *pathOrFullURLString){
++ (JDNetwork *(^)(NSString *))POST {
+    return ^(NSString *fullURLString){
         JDNetwork *requst = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
-        entity.request.pathOrFullURLString = pathOrFullURLString;
+        entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"POST";
+        requst->entity = entity;
+        return requst;
+    };
+}
+
++ (JDNetwork *(^)(NSString *))HEAD {
+    return ^(NSString *fullURLString){
+        JDNetwork *requst = [[self alloc] init];
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = fullURLString;
+        entity.request.HTTPMethod = @"HEAD";
+        requst->entity = entity;
+        return requst;
+    };
+}
+
++ (JDNetwork *(^)(NSString *))PUT {
+    return ^(NSString *fullURLString){
+        JDNetwork *requst = [[self alloc] init];
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = fullURLString;
+        entity.request.HTTPMethod = @"PUT";
+        requst->entity = entity;
+        return requst;
+    };
+}
+
++ (JDNetwork *(^)(NSString *))DELETE {
+    return ^(NSString *fullURLString){
+        JDNetwork *requst = [[self alloc] init];
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = fullURLString;
+        entity.request.HTTPMethod = @"DELETE";
+        requst->entity = entity;
+        return requst;
+    };
+}
+
++ (JDNetwork *(^)(NSString *))PATCH {
+    return ^(NSString *fullURLString){
+        JDNetwork *requst = [[self alloc] init];
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = fullURLString;
+        entity.request.HTTPMethod = @"PATCH";
         requst->entity = entity;
         return requst;
     };
@@ -48,7 +92,7 @@
     };
 }
 
-- (JDNetwork *(^)(NSString *))get {
+- (JDNetwork *(^)(NSString *))GET {
     return ^(NSString *pathOrFullURLString){
         self->entity.request.pathOrFullURLString = pathOrFullURLString;
         self->entity.request.HTTPMethod = @"GET";
@@ -56,10 +100,42 @@
     };
 }
 
-- (JDNetwork *(^)(NSString *))post {
+- (JDNetwork *(^)(NSString *))POST {
     return ^(NSString *pathOrFullURLString){
         self->entity.request.pathOrFullURLString = pathOrFullURLString;
         self->entity.request.HTTPMethod = @"POST";
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(NSString *))HEAD {
+    return ^(NSString *pathOrFullURLString){
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"HEAD";
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(NSString *))PUT {
+    return ^(NSString *pathOrFullURLString){
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"PUT";
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(NSString *))DELETE {
+    return ^(NSString *pathOrFullURLString){
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"DELETE";
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(NSString *))PATCH {
+    return ^(NSString *pathOrFullURLString){
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"PATCH";
         return self;
     };
 }

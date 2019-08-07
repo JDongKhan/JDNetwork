@@ -22,15 +22,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, assign) BOOL running;
 
 /**
- get
+ GET
  */
-@property (nonatomic, readonly, class, copy) JDNetwork *(^get)(NSString *pathOrFullURLString);
+@property (nonatomic, readonly, class, copy) JDNetwork *(^GET)(NSString *fullURLString);
 
 /**
- post
+ POST
  */
-@property (nonatomic, readonly, class, copy) JDNetwork *(^post)(NSString *pathOrFullURLString);
+@property (nonatomic, readonly, class, copy) JDNetwork *(^POST)(NSString *fullURLString);
 
+/**
+ HEAD
+ */
+@property (nonatomic, readonly, class, copy) JDNetwork *(^HEAD)(NSString *fullURLString);
+
+/**
+ PUT
+ */
+@property (nonatomic, readonly, class, copy) JDNetwork *(^PUT)(NSString *fullURLString);
+
+/**
+ DELETE
+ */
+@property (nonatomic, readonly, class, copy) JDNetwork *(^DELETE)(NSString *fullURLString);
+
+/**
+ PATCH
+ */
+@property (nonatomic, readonly, class, copy) JDNetwork *(^PATCH)(NSString *fullURLString);
 
 /**
  baseURL
@@ -38,14 +57,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, class, copy) JDNetwork *(^baseURLString)(NSString *baseURLString);
 
 /**
- get
+ GET
  */
-@property (nonatomic, readonly, copy) JDNetwork *(^get)(NSString *pathOrFullURLString);
+@property (nonatomic, readonly, copy) JDNetwork *(^GET)(NSString *pathOrFullURLString);
 
 /**
- post
+ POST
  */
-@property (nonatomic, readonly, copy) JDNetwork *(^post)(NSString *pathOrFullURLString);
+@property (nonatomic, readonly, copy) JDNetwork *(^POST)(NSString *pathOrFullURLString);
+
+/**
+ HEAD
+ */
+@property (nonatomic, readonly, copy) JDNetwork *(^HEAD)(NSString *pathOrFullURLString);
+
+/**
+ PUT
+ */
+@property (nonatomic, readonly, copy) JDNetwork *(^PUT)(NSString *pathOrFullURLString);
+
+/**
+ DELETE
+ */
+@property (nonatomic, readonly, copy) JDNetwork *(^DELETE)(NSString *pathOrFullURLString);
+
+/**
+ PATCH
+ */
+@property (nonatomic, readonly, copy) JDNetwork *(^PATCH)(NSString *pathOrFullURLString);
 
 /**
  拦截器
