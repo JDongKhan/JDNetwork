@@ -80,11 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) JDNetwork *(^successResponse)(JDNetworkCompletionBlock successResponse);
 
 /**
- 缓存响应
- */
-@property (nonatomic, readonly, copy) JDNetwork *(^cachedDataResponse)(JDNetworkCompletionBlock cachedDataResponse);
-
-/**
  error 回调
  */
 @property (nonatomic, readonly, copy) JDNetwork *(^errorResponse)(JDNetworkErrorBlock errorResponse);

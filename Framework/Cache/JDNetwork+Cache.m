@@ -19,4 +19,12 @@
     };
 }
 
+- (JDNetwork *(^)(JDNetworkCompletionBlock cachedDataResponse))cachedDataResponse {
+    return ^(JDNetworkCompletionBlock cachedDataResponse){
+        self->entity.cachedDataResponse = cachedDataResponse ;
+        return self;
+    };
+}
+
+
 @end

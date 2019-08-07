@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol JDNetworkInterceptor;
 
 typedef void (^JDNetworkCompletionBlock)(id result);
+
 typedef void (^JDNetworkErrorBlock)(NSError* error);
 
 @interface JDNetworkEntity : NSObject

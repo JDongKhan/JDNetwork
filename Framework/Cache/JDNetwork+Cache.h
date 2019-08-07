@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly, copy) JDNetwork *(^cachePolicy)(JDNetworkCachePolicy cachePolicy);
 
+/**
+ 缓存响应
+ */
+@property (nonatomic, readonly, copy) JDNetwork *(^cachedDataResponse)(JDNetworkCompletionBlock cachedDataResponse);
+
+
 @end
 
 NS_ASSUME_NONNULL_END

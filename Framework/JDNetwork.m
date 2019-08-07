@@ -120,13 +120,6 @@
     };
 }
 
-- (JDNetwork *(^)(JDNetworkCompletionBlock cachedDataResponse))cachedDataResponse {
-    return ^(JDNetworkCompletionBlock cachedDataResponse){
-        self->entity.cachedDataResponse = cachedDataResponse ;
-        return self;
-    };
-}
-
 - (JDNetwork *(^)(JDNetworkErrorBlock errorResponse))errorResponse {
     return ^(JDNetworkErrorBlock errorResponse){
         self->entity.errorResponse = errorResponse ;
