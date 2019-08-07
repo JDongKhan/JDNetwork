@@ -73,7 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly, copy) JDNetwork *(^responseEncoding)(JDNetworkResponseEncoding responseEncoding);
 
-
 /**
  success 回调
  */
