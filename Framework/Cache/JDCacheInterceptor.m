@@ -15,6 +15,7 @@
 
 @implementation JDCacheInterceptor {
     NSString *_keyForCaching;
+    BOOL _shouldCache;
 }
 
 - (NSInteger)priority {
@@ -24,8 +25,9 @@
 - (BOOL)intercept:(JDNetworkChain *)chain {
     JDNetworkEntity *entity = chain.entity;
     JDRequest *request = entity.request;
+     _shouldCache = request.shouldCache;
     //加载缓存
-    if ([self loadCacheData:request]) {
+    if (_shouldCache) {
         _keyForCaching = request.keyForCaching;
         id response = [JDNetworkCache cacheWithURL:_keyForCaching];
         if (response) {
@@ -38,17 +40,9 @@
     return NO;
 }
 
-//处理缓存
-- (BOOL)loadCacheData:(JDRequest *)request {
-    if (request.shouldCache) {
-        return YES;
-    }
-    return NO;
-}
-
 - (void)disposeOfResponse:(JDResponse *)response {
-    if (response.error == nil) {
-       // [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
+    if (response.error == nil && _shouldCache) {
+        [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
     }
 }
 

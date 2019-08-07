@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
-- (NSMutableURLRequest *)toRequest:(NSError **)error;
+- (NSURLRequest *)convertToNSURLRequest:(NSError **)error;
 
 @end
 

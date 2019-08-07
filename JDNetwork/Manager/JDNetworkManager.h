@@ -1,5 +1,5 @@
 //
-//  JDNetwork+myproject.h
+//  JDNetworkManager.h
 //  JDNetwork
 //
 //  Created by JD on 2015/6/10.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetwork (myproject)
+@interface JDNetworkManager :NSObject
 
-+ (JDNetwork *)userService;
++ (JDNetwork *)baiduService;
 
 @end
 

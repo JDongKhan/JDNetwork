@@ -41,7 +41,7 @@
     
     NSError *error = nil;
     JDRequest *resultRequest = chain.entity.request;
-    NSURLRequest *request = [resultRequest toRequest:&error];
+    NSURLRequest *request = [resultRequest convertToNSURLRequest:&error];
     
     if (self.task_running) {
         return;

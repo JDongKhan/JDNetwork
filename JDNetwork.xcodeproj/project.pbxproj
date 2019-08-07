@@ -13,10 +13,11 @@
 		4DC7478D1F20C8E90020A29F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478B1F20C8E90020A29F /* Main.storyboard */; };
 		4DC7478F1F20C8E90020A29F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478E1F20C8E90020A29F /* Assets.xcassets */; };
 		4DC747921F20C8E90020A29F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC747901F20C8E90020A29F /* LaunchScreen.storyboard */; };
-		69A1284E22FA623D001559A2 /* LoginInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1284D22FA623D001559A2 /* LoginInterceptor.m */; };
-		69A1286622FAB70B001559A2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1286522FAB70B001559A2 /* LoginManager.m */; };
-		69A1286922FAC489001559A2 /* HttpLoggingInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1286822FAC489001559A2 /* HttpLoggingInterceptor.m */; };
-		69C284A622ADEF70009D0EBA /* JDNetwork+myproject.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */; };
+		69A1287522FACC83001559A2 /* XMLInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287122FACC83001559A2 /* XMLInterceptor.m */; };
+		69A1287622FACC83001559A2 /* LoginInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287222FACC83001559A2 /* LoginInterceptor.m */; };
+		69A1287722FACC83001559A2 /* HttpLoggingInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287322FACC83001559A2 /* HttpLoggingInterceptor.m */; };
+		69A1287E22FACCCB001559A2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287A22FACCCB001559A2 /* LoginManager.m */; };
+		69A1287F22FACCCB001559A2 /* JDNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287C22FACCCB001559A2 /* JDNetworkManager.m */; };
 		FBF81F5230CA5F00BCEFFAC0 /* libPods-JDNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */; };
 /* End PBXBuildFile section */
 
@@ -32,14 +33,16 @@
 		4DC7478E1F20C8E90020A29F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DC747911F20C8E90020A29F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DC747931F20C8E90020A29F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69A1284C22FA623D001559A2 /* LoginInterceptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginInterceptor.h; sourceTree = "<group>"; };
-		69A1284D22FA623D001559A2 /* LoginInterceptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInterceptor.m; sourceTree = "<group>"; };
-		69A1286422FAB70B001559A2 /* LoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
-		69A1286522FAB70B001559A2 /* LoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
-		69A1286722FAC489001559A2 /* HttpLoggingInterceptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpLoggingInterceptor.h; sourceTree = "<group>"; };
-		69A1286822FAC489001559A2 /* HttpLoggingInterceptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpLoggingInterceptor.m; sourceTree = "<group>"; };
-		69C284A422ADEF70009D0EBA /* JDNetwork+myproject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDNetwork+myproject.h"; sourceTree = "<group>"; };
-		69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JDNetwork+myproject.m"; sourceTree = "<group>"; };
+		69A1286F22FACC83001559A2 /* XMLInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLInterceptor.h; sourceTree = "<group>"; };
+		69A1287022FACC83001559A2 /* HttpLoggingInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpLoggingInterceptor.h; sourceTree = "<group>"; };
+		69A1287122FACC83001559A2 /* XMLInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLInterceptor.m; sourceTree = "<group>"; };
+		69A1287222FACC83001559A2 /* LoginInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInterceptor.m; sourceTree = "<group>"; };
+		69A1287322FACC83001559A2 /* HttpLoggingInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpLoggingInterceptor.m; sourceTree = "<group>"; };
+		69A1287422FACC83001559A2 /* LoginInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInterceptor.h; sourceTree = "<group>"; };
+		69A1287A22FACCCB001559A2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		69A1287B22FACCCB001559A2 /* JDNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetworkManager.h; sourceTree = "<group>"; };
+		69A1287C22FACCCB001559A2 /* JDNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetworkManager.m; sourceTree = "<group>"; };
+		69A1287D22FACCCB001559A2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8818AD11420A379C613E3B /* Pods-JDNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDNetwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +80,8 @@
 		4DC747811F20C8E90020A29F /* JDNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				69A1287922FACCCB001559A2 /* Manager */,
+				69A1286E22FACC61001559A2 /* Interceptor */,
 				4DC747851F20C8E90020A29F /* AppDelegate.h */,
 				4DC747861F20C8E90020A29F /* AppDelegate.m */,
 				4DC747881F20C8E90020A29F /* ViewController.h */,
@@ -86,14 +91,6 @@
 				4DC747901F20C8E90020A29F /* LaunchScreen.storyboard */,
 				4DC747931F20C8E90020A29F /* Info.plist */,
 				4DC747821F20C8E90020A29F /* Supporting Files */,
-				69C284A422ADEF70009D0EBA /* JDNetwork+myproject.h */,
-				69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */,
-				69A1284C22FA623D001559A2 /* LoginInterceptor.h */,
-				69A1284D22FA623D001559A2 /* LoginInterceptor.m */,
-				69A1286422FAB70B001559A2 /* LoginManager.h */,
-				69A1286522FAB70B001559A2 /* LoginManager.m */,
-				69A1286722FAC489001559A2 /* HttpLoggingInterceptor.h */,
-				69A1286822FAC489001559A2 /* HttpLoggingInterceptor.m */,
 			);
 			path = JDNetwork;
 			sourceTree = "<group>";
@@ -104,6 +101,30 @@
 				4DC747831F20C8E90020A29F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		69A1286E22FACC61001559A2 /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				69A1287022FACC83001559A2 /* HttpLoggingInterceptor.h */,
+				69A1287322FACC83001559A2 /* HttpLoggingInterceptor.m */,
+				69A1287422FACC83001559A2 /* LoginInterceptor.h */,
+				69A1287222FACC83001559A2 /* LoginInterceptor.m */,
+				69A1286F22FACC83001559A2 /* XMLInterceptor.h */,
+				69A1287122FACC83001559A2 /* XMLInterceptor.m */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		69A1287922FACCCB001559A2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				69A1287A22FACCCB001559A2 /* LoginManager.m */,
+				69A1287B22FACCCB001559A2 /* JDNetworkManager.h */,
+				69A1287C22FACCCB001559A2 /* JDNetworkManager.m */,
+				69A1287D22FACCCB001559A2 /* LoginManager.h */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		7FFAD2F8FBE6ACC2E69B11FA /* Frameworks */ = {
@@ -217,13 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69C284A622ADEF70009D0EBA /* JDNetwork+myproject.m in Sources */,
+				69A1287F22FACCCB001559A2 /* JDNetworkManager.m in Sources */,
+				69A1287722FACC83001559A2 /* HttpLoggingInterceptor.m in Sources */,
+				69A1287522FACC83001559A2 /* XMLInterceptor.m in Sources */,
+				69A1287622FACC83001559A2 /* LoginInterceptor.m in Sources */,
 				4DC7478A1F20C8E90020A29F /* ViewController.m in Sources */,
-				69A1286922FAC489001559A2 /* HttpLoggingInterceptor.m in Sources */,
-				69A1284E22FA623D001559A2 /* LoginInterceptor.m in Sources */,
-				69A1286622FAB70B001559A2 /* LoginManager.m in Sources */,
 				4DC747871F20C8E90020A29F /* AppDelegate.m in Sources */,
 				4DC747841F20C8E90020A29F /* main.m in Sources */,
+				69A1287E22FACCCB001559A2 /* LoginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

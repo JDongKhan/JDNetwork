@@ -11,6 +11,10 @@
 
 @implementation LoginInterceptor
 
+- (NSInteger)priority {
+    return 999;
+}
+
 - (BOOL)intercept:(JDNetworkChain *)chain {
     //如果没有登录则拦截掉
     if (![LoginManager isLogin]) {

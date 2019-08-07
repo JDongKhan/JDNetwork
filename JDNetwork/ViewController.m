@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "JDNetwork.h"
-#import "JDNetwork+myproject.h"
+#import "JDNetworkManager.h"
 #import "LoginInterceptor.h"
 #import "JDNetwork+Cache.h"
 #import "HttpLoggingInterceptor.h"
+#import "XMLInterceptor.h"
 
 @interface ViewController ()
 
@@ -70,6 +71,7 @@
     .get(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .addInterceptor([[HttpLoggingInterceptor alloc] init])
+    .addInterceptor([[XMLInterceptor alloc] init])
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
@@ -81,7 +83,20 @@
 
 
 - (IBAction)requestAction5:(id)sender {
-    JDNetwork.userService.get(@"");
+    NSString *url = @"/api/openapi/BaikeLemmaCardApi";
+    JDNetworkManager.baiduService
+    .get(url)
+    .parametersForKey(@"scope", @"103")
+    .parametersForKey(@"format", @"json")
+    .parametersForKey(@"appid", @"379020")
+    .parametersForKey(@"bk_key", @"haha")
+    .parametersForKey(@"bk_length", @"600")
+    .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
+    .successResponse(^(id  _Nonnull result) {
+    })
+    .errorResponse(^(NSError * _Nonnull error) {
+    })
+    .start();
 }
 
 @end

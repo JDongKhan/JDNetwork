@@ -37,9 +37,12 @@
 }
 
 - (NSString *)keyForCaching {
-    NSString *urlString = self.fullURLString;
+    
+    NSString *fullURLString = [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
+    
+    NSString *urlString = fullURLString;
     NSURL *url = [NSURL URLWithString:urlString];
-    NSAssert(url != nil, @"The url is nil of %@", self.fullURLString);
+    NSAssert(url != nil, @"The url is nil of %@", fullURLString);
     NSString *query = AFQueryStringFromParameters(self.parameters);
     if (query.length > 0) {
         NSString *queryToAppend = [NSString stringWithFormat:url.query ? @"&%@" : @"?%@", query];
@@ -47,10 +50,5 @@
     }
     return urlString;
 }
-
-- (NSString *)fullURLString {
-    return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
-}
-
 
 @end

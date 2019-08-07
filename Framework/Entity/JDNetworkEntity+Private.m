@@ -10,7 +10,6 @@
 
 @implementation JDRequest (Private)
 
-
 - (AFHTTPRequestSerializer<AFURLRequestSerialization> *)requestSerializer {
     switch (self.parameterEncoding) {
         case JDNetworkParameterJSONEncoding: {
@@ -25,9 +24,12 @@
     }
 }
 
-- (NSMutableURLRequest *)toRequest:(NSError **)error {
+- (NSURLRequest *)convertToNSURLRequest:(NSError **)error {
     NSMutableURLRequest *request = nil;
     NSError *serializationError = nil;
+    
+    NSString *fullURLString = [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
+    
     if (self.usedMultipartFormData) {
         //TODO下面的方法没有测试，待完善
         //有文件
@@ -42,7 +44,7 @@
                 _files[key] = value;
             }
         }
-        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:self.fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             for (NSString *key in _files) {
                 id value = _files[key];
                 [formData
@@ -58,17 +60,13 @@
         }
         
     } else {
-        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:self.fullURLString parameters:self.parameters error:&serializationError];
+        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:fullURLString parameters:self.parameters error:&serializationError];
         if (serializationError != nil) {
             *error = serializationError;
             return nil;
         }
     }
     return request;
-}
-
-- (NSString *)fullURLString {
-    return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
 }
 
 @end
