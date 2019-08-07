@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,33 +24,33 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiy-eU-d0P">
                                 <rect key="frame" x="44" y="53" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="请求1"/>
+                                <state key="normal" title="空URL"/>
                                 <connections>
-                                    <action selector="requestAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xhh-yC-gI7"/>
+                                    <action selector="requestAction1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1hp-wO-4bg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olp-2h-Ko3">
-                                <rect key="frame" x="138" y="53" width="46" height="30"/>
+                                <rect key="frame" x="156" y="53" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="请求2"/>
+                                <state key="normal" title="登录拦截器"/>
                                 <connections>
-                                    <action selector="requestAction1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="txB-xg-Qi9"/>
+                                    <action selector="requestAction2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qoz-9v-Lg9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEh-MA-rtP">
-                                <rect key="frame" x="58" y="105" width="46" height="30"/>
+                                <rect key="frame" x="43" y="105" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="请求3"/>
+                                <state key="normal" title="缓存拦截器"/>
                                 <connections>
-                                    <action selector="requestAction2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FoH-J3-hPH"/>
+                                    <action selector="requestAction3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bew-rZ-aBd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GO-7i-eG0">
-                                <rect key="frame" x="138" y="105" width="46" height="30"/>
+                                <rect key="frame" x="157" y="105" width="117" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="请求4"/>
+                                <state key="normal" title="登录+缓存拦截器"/>
                                 <connections>
-                                    <action selector="requestAction3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rvs-rk-AME"/>
+                                    <action selector="requestAction4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v6K-TY-ulG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whF-ty-9Y8">
@@ -58,7 +58,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="请求5"/>
                                 <connections>
-                                    <action selector="requestAction4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GAl-QM-Kuj"/>
+                                    <action selector="requestAction5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKH-EU-3mF"/>
                                 </connections>
                             </button>
                         </subviews>

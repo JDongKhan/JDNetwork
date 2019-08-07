@@ -7,27 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D4EE39A1F21F2240011EDCD /* JDNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */; };
-		4D4EE39B1F21F2240011EDCD /* JDNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE3961F21F2240011EDCD /* JDNetwork.m */; };
 		4DC747841F20C8E90020A29F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747831F20C8E90020A29F /* main.m */; };
 		4DC747871F20C8E90020A29F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747861F20C8E90020A29F /* AppDelegate.m */; };
 		4DC7478A1F20C8E90020A29F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC747891F20C8E90020A29F /* ViewController.m */; };
 		4DC7478D1F20C8E90020A29F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478B1F20C8E90020A29F /* Main.storyboard */; };
 		4DC7478F1F20C8E90020A29F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7478E1F20C8E90020A29F /* Assets.xcassets */; };
 		4DC747921F20C8E90020A29F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC747901F20C8E90020A29F /* LaunchScreen.storyboard */; };
-		69C2849A22AA059E009D0EBA /* JDNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C2849922AA059E009D0EBA /* JDNetworkConfig.m */; };
-		69C2849E22AA08EB009D0EBA /* JDNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C2849D22AA08EB009D0EBA /* JDNetworkOperation.m */; };
-		69C284A122AA0E9A009D0EBA /* JDNetworkConfig+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C284A022AA0E9A009D0EBA /* JDNetworkConfig+Private.m */; };
+		69A1284E22FA623D001559A2 /* LoginInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1284D22FA623D001559A2 /* LoginInterceptor.m */; };
+		69A1286622FAB70B001559A2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1286522FAB70B001559A2 /* LoginManager.m */; };
 		69C284A622ADEF70009D0EBA /* JDNetwork+myproject.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */; };
 		FBF81F5230CA5F00BCEFFAC0 /* libPods-JDNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3775C6F5CE231D2214A9B4C4 /* Pods-JDNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDNetwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork.debug.xcconfig"; sourceTree = "<group>"; };
-		4D4EE3931F21F2240011EDCD /* JDNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetworkCache.h; sourceTree = "<group>"; };
-		4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetworkCache.m; sourceTree = "<group>"; };
-		4D4EE3951F21F2240011EDCD /* JDNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetwork.h; sourceTree = "<group>"; };
-		4D4EE3961F21F2240011EDCD /* JDNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetwork.m; sourceTree = "<group>"; };
 		4DC7477F1F20C8E90020A29F /* JDNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC747831F20C8E90020A29F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DC747851F20C8E90020A29F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -38,12 +31,10 @@
 		4DC7478E1F20C8E90020A29F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DC747911F20C8E90020A29F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DC747931F20C8E90020A29F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69C2849822AA059E009D0EBA /* JDNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDNetworkConfig.h; sourceTree = "<group>"; };
-		69C2849922AA059E009D0EBA /* JDNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDNetworkConfig.m; sourceTree = "<group>"; };
-		69C2849C22AA08EB009D0EBA /* JDNetworkOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDNetworkOperation.h; sourceTree = "<group>"; };
-		69C2849D22AA08EB009D0EBA /* JDNetworkOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDNetworkOperation.m; sourceTree = "<group>"; };
-		69C2849F22AA0E9A009D0EBA /* JDNetworkConfig+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDNetworkConfig+Private.h"; sourceTree = "<group>"; };
-		69C284A022AA0E9A009D0EBA /* JDNetworkConfig+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JDNetworkConfig+Private.m"; sourceTree = "<group>"; };
+		69A1284C22FA623D001559A2 /* LoginInterceptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginInterceptor.h; sourceTree = "<group>"; };
+		69A1284D22FA623D001559A2 /* LoginInterceptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInterceptor.m; sourceTree = "<group>"; };
+		69A1286422FAB70B001559A2 /* LoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		69A1286522FAB70B001559A2 /* LoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		69C284A422ADEF70009D0EBA /* JDNetwork+myproject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDNetwork+myproject.h"; sourceTree = "<group>"; };
 		69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JDNetwork+myproject.m"; sourceTree = "<group>"; };
 		B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,22 +53,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D4EE3901F21F2240011EDCD /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				69C284A222AA4242009D0EBA /* Cache */,
-				69C2849B22AA08D2009D0EBA /* Operation */,
-				69C2849722AA0574009D0EBA /* Config */,
-				4D4EE3951F21F2240011EDCD /* JDNetwork.h */,
-				4D4EE3961F21F2240011EDCD /* JDNetwork.m */,
-			);
-			path = Framework;
-			sourceTree = "<group>";
-		};
 		4DC747761F20C8E90020A29F = {
 			isa = PBXGroup;
 			children = (
-				4D4EE3901F21F2240011EDCD /* Framework */,
 				4DC747811F20C8E90020A29F /* JDNetwork */,
 				4DC747801F20C8E90020A29F /* Products */,
 				D7B0283802988EEE62131489 /* Pods */,
@@ -107,6 +85,10 @@
 				4DC747821F20C8E90020A29F /* Supporting Files */,
 				69C284A422ADEF70009D0EBA /* JDNetwork+myproject.h */,
 				69C284A522ADEF70009D0EBA /* JDNetwork+myproject.m */,
+				69A1284C22FA623D001559A2 /* LoginInterceptor.h */,
+				69A1284D22FA623D001559A2 /* LoginInterceptor.m */,
+				69A1286422FAB70B001559A2 /* LoginManager.h */,
+				69A1286522FAB70B001559A2 /* LoginManager.m */,
 			);
 			path = JDNetwork;
 			sourceTree = "<group>";
@@ -117,35 +99,6 @@
 				4DC747831F20C8E90020A29F /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		69C2849722AA0574009D0EBA /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				69C2849822AA059E009D0EBA /* JDNetworkConfig.h */,
-				69C2849922AA059E009D0EBA /* JDNetworkConfig.m */,
-				69C2849F22AA0E9A009D0EBA /* JDNetworkConfig+Private.h */,
-				69C284A022AA0E9A009D0EBA /* JDNetworkConfig+Private.m */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
-		69C2849B22AA08D2009D0EBA /* Operation */ = {
-			isa = PBXGroup;
-			children = (
-				69C2849C22AA08EB009D0EBA /* JDNetworkOperation.h */,
-				69C2849D22AA08EB009D0EBA /* JDNetworkOperation.m */,
-			);
-			path = Operation;
-			sourceTree = "<group>";
-		};
-		69C284A222AA4242009D0EBA /* Cache */ = {
-			isa = PBXGroup;
-			children = (
-				4D4EE3931F21F2240011EDCD /* JDNetworkCache.h */,
-				4D4EE3941F21F2240011EDCD /* JDNetworkCache.m */,
-			);
-			path = Cache;
 			sourceTree = "<group>";
 		};
 		7FFAD2F8FBE6ACC2E69B11FA /* Frameworks */ = {
@@ -176,8 +129,6 @@
 				4DC7477B1F20C8E90020A29F /* Sources */,
 				4DC7477C1F20C8E90020A29F /* Frameworks */,
 				4DC7477D1F20C8E90020A29F /* Resources */,
-				23E66E08939D4FBA16F4CC74 /* [CP] Embed Pods Frameworks */,
-				672DA1A6CF4E5958F0B38F5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,7 +146,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "王金东";
+				ORGANIZATIONNAME = JD;
 				TargetAttributes = {
 					4DC7477E1F20C8E90020A29F = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -236,49 +187,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		23E66E08939D4FBA16F4CC74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		672DA1A6CF4E5958F0B38F5E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EF3B20BAAC1C8BA51ADE9A19 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JDNetwork-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -288,14 +212,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69C284A122AA0E9A009D0EBA /* JDNetworkConfig+Private.m in Sources */,
 				69C284A622ADEF70009D0EBA /* JDNetwork+myproject.m in Sources */,
-				4D4EE39A1F21F2240011EDCD /* JDNetworkCache.m in Sources */,
 				4DC7478A1F20C8E90020A29F /* ViewController.m in Sources */,
+				69A1284E22FA623D001559A2 /* LoginInterceptor.m in Sources */,
+				69A1286622FAB70B001559A2 /* LoginManager.m in Sources */,
 				4DC747871F20C8E90020A29F /* AppDelegate.m in Sources */,
-				4D4EE39B1F21F2240011EDCD /* JDNetwork.m in Sources */,
-				69C2849A22AA059E009D0EBA /* JDNetworkConfig.m in Sources */,
-				69C2849E22AA08EB009D0EBA /* JDNetworkOperation.m in Sources */,
 				4DC747841F20C8E90020A29F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

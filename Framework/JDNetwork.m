@@ -1,16 +1,14 @@
 //
 //  JDNetwork.m
 //
-//  Created by 王金东 on 15/7/7.
-//  Copyright (c) 2015年 王金东. All rights reserved.
+//  Created by JD on 15/7/7.
+//  Copyright (c) 2015年 JD. All rights reserved.
 //
 
 #import "JDNetwork.h"
 #import "JDNetworkOperation.h"
 
 @interface JDNetwork ()
-
-@property (nonatomic, strong) JDNetworkConfig *config;
 
 @property (nonatomic, strong) JDNetworkOperation *operation;
 
@@ -21,10 +19,10 @@
 + (JDNetwork *(^)(NSString *))get {
     return ^(NSString *pathOrFullURLString){
         JDNetwork *requst = [[self alloc] init];
-        JDNetworkConfig *config = [[JDNetworkConfig alloc] init];
-        config.pathOrFullURLString = pathOrFullURLString;
-        config.HTTPMethod = @"GET";
-        requst.config = config;
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = pathOrFullURLString;
+        entity.request.HTTPMethod = @"GET";
+        requst->entity = entity;
         return requst;
     };
 }
@@ -32,10 +30,10 @@
 + (JDNetwork *(^)(NSString *))post {
     return ^(NSString *pathOrFullURLString){
         JDNetwork *requst = [[self alloc] init];
-        JDNetworkConfig *config = [[JDNetworkConfig alloc] init];
-        config.pathOrFullURLString = pathOrFullURLString;
-        config.HTTPMethod = @"POST";
-        requst.config = config;
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.pathOrFullURLString = pathOrFullURLString;
+        entity.request.HTTPMethod = @"POST";
+        requst->entity = entity;
         return requst;
     };
 }
@@ -43,108 +41,96 @@
 + (JDNetwork *(^)(NSString *))baseURLString {
     return ^(NSString *baseURLString){
         JDNetwork *requst = [[self alloc] init];
-        JDNetworkConfig *config = [[JDNetworkConfig alloc] init];
-        config.baseURLString = baseURLString;
-        requst.config = config;
+        JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
+        entity.request.baseURLString = baseURLString;
+        requst->entity = entity;
         return requst;
     };
 }
 
 - (JDNetwork *(^)(NSString *))get {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *pathOrFullURLString){
-        _weaskSelf.config.pathOrFullURLString = pathOrFullURLString;
-        _weaskSelf.config.HTTPMethod = @"GET";
-        return _weaskSelf;
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"GET";
+        return self;
     };
 }
 
 - (JDNetwork *(^)(NSString *))post {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *pathOrFullURLString){
-        _weaskSelf.config.pathOrFullURLString = pathOrFullURLString;
-        _weaskSelf.config.HTTPMethod = @"POST";
-        return _weaskSelf;
+        self->entity.request.pathOrFullURLString = pathOrFullURLString;
+        self->entity.request.HTTPMethod = @"POST";
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(id<JDNetworkInterceptor>))addInterceptor {
+    return ^(id<JDNetworkInterceptor> interceptor){
+        [self->entity.interceptors addObject:interceptor];
+        return self;
     };
 }
 
 - (JDNetwork *(^)(NSString *key,id obj))parametersForKey {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *key,id obj){
-        [_weaskSelf.config.parameters setValue:obj forKey:key];
-        return _weaskSelf;
+        [self->entity.request.parameters setValue:obj forKey:key];
+        return self;
     };
 }
 
 - (JDNetwork *(^)(NSDictionary *))parameters {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(NSDictionary *params){
-        _weaskSelf.config.parameters = params.mutableCopy;
-        return _weaskSelf;
+        self->entity.request.parameters = params.mutableCopy;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(NSString *HTTPMethod))HTTPMethod {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(NSString *HTTPMethod){
-        _weaskSelf.config.HTTPMethod = HTTPMethod;
-        return _weaskSelf;
-    };
-}
-
-- (JDNetwork *(^)(JDNetworkCachePolicy))cachePolicy {
-    __weak JDNetwork *_weaskSelf = self;
-    return ^(JDNetworkCachePolicy cachePolicy){
-        _weaskSelf.config.cachePolicy = cachePolicy;
-        return _weaskSelf;
+        self->entity.request.HTTPMethod = HTTPMethod;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(CGFloat))timeoutInterval {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(CGFloat timeoutInterval){
-        _weaskSelf.config.timeoutInterval = timeoutInterval;
-        return _weaskSelf;
+        self->entity.request.timeoutInterval = timeoutInterval;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkParameterEncoding))parameterEncoding {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(JDNetworkParameterEncoding parameterEncoding) {
-        _weaskSelf.config.parameterEncoding = parameterEncoding;
-        return _weaskSelf;
+        self->entity.request.parameterEncoding = parameterEncoding;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkResponseEncoding))responseEncoding {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(JDNetworkResponseEncoding responseEncoding) {
-        _weaskSelf.config.responseEncoding = responseEncoding;
-        return _weaskSelf;
+        self->entity.request.responseEncoding = responseEncoding;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkCompletionBlock successResponse))successResponse {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(JDNetworkCompletionBlock successResponse){
-        _weaskSelf.config.successResponse = successResponse ;
-        return _weaskSelf;
+        self->entity.successResponse = successResponse ;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkCompletionBlock cachedDataResponse))cachedDataResponse {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(JDNetworkCompletionBlock cachedDataResponse){
-        _weaskSelf.config.cachedDataResponse = cachedDataResponse ;
-        return _weaskSelf;
+        self->entity.cachedDataResponse = cachedDataResponse ;
+        return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkErrorBlock errorResponse))errorResponse {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(JDNetworkErrorBlock errorResponse){
-        _weaskSelf.config.errorResponse = errorResponse ;
-        return _weaskSelf;
+        self->entity.errorResponse = errorResponse ;
+        return self;
     };
 }
 
@@ -170,10 +156,14 @@
 
 - (void)_start {
     JDNetworkOperation *operation = [[JDNetworkOperation alloc] init];
-    operation.config = self.config;
+    operation.entity = self->entity;
     [operation start];
     self.operation = operation;
 }
 
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+}
 
 @end

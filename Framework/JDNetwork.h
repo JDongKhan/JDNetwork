@@ -1,15 +1,20 @@
 //
 //  JDNetwork.h
 //
-//  Created by 王金东 on 15/7/7.
-//  Copyright (c) 2015年 王金东. All rights reserved.
+//  Created by JD on 15/7/7.
+//  Copyright (c) 2015年 JD. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIView.h>
-#import "JDNetworkConfig.h"
+#import "JDNetworkEntity.h"
+#import "JDNetworkInterceptor.h"
 
-@interface JDNetwork : NSObject
+NS_ASSUME_NONNULL_BEGIN
+
+@interface JDNetwork : NSObject {
+    __strong JDNetworkEntity *entity;
+}
 
 /**
  请求是否正在运行
@@ -43,15 +48,15 @@
 @property (nonatomic, readonly, copy) JDNetwork *(^post)(NSString *pathOrFullURLString);
 
 /**
+ 拦截器
+ */
+@property (nonatomic, readonly) JDNetwork *(^addInterceptor)(id<JDNetworkInterceptor> interceptor);
+
+/**
  设置请求参数
  */
 @property (nonatomic, readonly, copy) JDNetwork *(^parametersForKey)(NSString *key,id obj);
 @property (nonatomic, readonly, copy) JDNetwork *(^parameters)(NSDictionary *params);
-
-/**
- 缓存
- */
-@property (nonatomic, readonly, copy) JDNetwork *(^cachePolicy)(JDNetworkCachePolicy cachePolicy);
 
 /**
  超时
@@ -96,3 +101,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

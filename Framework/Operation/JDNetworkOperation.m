@@ -3,13 +3,14 @@
 //  JDNetwork
 //
 //  Created by JD on 2015/6/7.
-//  Copyright © 2015 王金东. All rights reserved.
+//  Copyright © 2015 JD. All rights reserved.
 //
 
 #import "JDNetworkOperation.h"
 #import <AFNetworking/AFNetworking.h>
-#import "JDNetworkConfig+Private.h"
+#import "JDNetworkEntity+Private.h"
 #import "JDNetworkCache.h"
+#import "JDNetworkInterceptor.h"
 
 @interface JDNetworkOperation()
 
@@ -23,41 +24,57 @@
 
 - (void)start {
     
+    //拦截处理request
+    JDNetworkEntity *entity = self.entity;
+    JDNetworkChain *chain = [[JDNetworkChain alloc] initWithOperation:self];
+    chain.entity = entity;
+    BOOL intercept = NO;
+    NSArray *sortInterceptors = [self sortArrayBypriority:entity.interceptors];
+    for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
+        if ((intercept = [interceptor intercept:chain])) {
+            break;
+        }
+    }
+    if (intercept) {
+        return;
+    }
+    NSError *error = nil;
+    JDRequest *resultRequest = chain.entity.request;
+    NSURLRequest *request = [resultRequest toRequest:&error];
+    
     if (self.task_running) {
         return;
     }
-
-    //加载缓存
-    if ([self loadCacheData] && ![self.config shouldContinueRequestAfterLoaded]) {
-        return;
-    }
     
-    //请求
-    //此处不要使用weak，因为外界可能没有持有JDNetworkOperation导致其已经释放了
     void (^completionBlock)(NSURLResponse *,id,NSError *) = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error){
-        if (error != nil) {
-            [self.config reportError:error];
-            return;
+        JDResponse *myResponse = [[JDResponse alloc] init];
+        myResponse.response = response;
+        myResponse.responseObject = responseObject;
+        myResponse.error = error;
+        
+        JDResponse *resultResponse = myResponse;
+        for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
+            if ([interceptor respondsToSelector:@selector(response:)]) {
+                resultResponse = [interceptor response:resultResponse];
+            }
         }
-        [self.config reportSuccess:responseObject];
-        if (self.config.shouldCache) {
-            [JDNetworkCache saveResponseToCacheFile:responseObject andURL:self.config.keyForCaching];
-        }
+        [entity reportResponse:resultResponse];
         
         self.task_running = NO;
     };
     
     //创建request请求管理对象
-    AFHTTPSessionManager *manager = _config.sessionManager;
-  
+    AFHTTPSessionManager *manager = entity.sessionManager;
+    
     NSURLSessionTask *task = nil;
-    if(_config.usedMultipartFormData) {
-        task = [manager uploadTaskWithStreamedRequest:_config.request progress:^(NSProgress * _Nonnull uploadProgress) {
+    
+    NSAssert(request != nil, @"request is null ");
+    if(resultRequest.usedMultipartFormData) {
+        task = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } completionHandler:completionBlock];
     } else {
-
-        task = [manager dataTaskWithRequest:_config.request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
             
         } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
             
@@ -112,24 +129,31 @@
     [task resume];
 }
 
-//处理缓存
-- (BOOL)loadCacheData {
-    if (self.config.shouldCache) {
-        id response = [JDNetworkCache cacheWithURL:self.config.keyForCaching];
-        if (response) {
-            [self.config reportCacheData:response];
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (BOOL)running {
     return _task.state == NSURLSessionTaskStateRunning;
 }
 
 - (void)cancel {
     [self.task cancel];
+}
+
+- (NSArray *)sortArrayBypriority:(NSArray *)array {
+    NSArray *newArray =  [array sortedArrayUsingComparator:^NSComparisonResult(id<JDNetworkInterceptor>  _Nonnull module1, id<JDNetworkInterceptor>  _Nonnull module2) {
+        NSInteger priority1 = 0;
+        if ([module1 respondsToSelector:@selector(priority)]) {
+            priority1 = module1.priority;
+        }
+        NSInteger priority2 = 0;
+        if ([module2 respondsToSelector:@selector(priority)]) {
+            priority2 = module2.priority;
+        }
+        return priority1 < priority2;
+    }];
+    return newArray;
+}
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 @end

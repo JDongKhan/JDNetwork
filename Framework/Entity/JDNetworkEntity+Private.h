@@ -1,20 +1,18 @@
 //
-//  JDNetworkConfig+Private.h
+//  JDNetworkEntity+Private.h
 //  JDNetwork
 //
-//  Created by JD on 2019/6/7.
-//  Copyright © 2019 王金东. All rights reserved.
+//  Created by JD on 2018/6/7.
+//  Copyright © 2018 JD. All rights reserved.
 //
 
-#import "JDNetworkConfig.h"
+#import "JDNetworkEntity.h"
 #import <AFNetworking/AFNetworking.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetworkConfig (Private)
-
-@property (nonatomic, strong, readonly) AFHTTPSessionManager *sessionManager;
+@interface JDRequest (Private)
 
 @property (nonatomic, strong, readonly) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
@@ -25,29 +23,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
-/**
- request
- */
-@property (nonatomic, strong, readonly) NSMutableURLRequest *request;
 
-/**
- keyForCaching
- */
-@property (nonatomic, copy, readonly) NSString *keyForCaching;
-
-
-@property (nonatomic, readonly) BOOL shouldCache;
-
-@property (nonatomic, readonly) BOOL shouldContinueRequestAfterLoaded;
-
-
-//回调数据出去
-- (void)reportSuccess:(id)responseObject;
-
-- (void)reportCacheData:(id)responseObject;
-
-- (void)reportError:(NSError *)error;
+- (NSMutableURLRequest *)toRequest:(NSError **)error;
 
 @end
+
+
+@interface JDResponse (Private)
+
+@end
+
+@interface JDNetworkEntity (Private)
+
+@property (nonatomic, strong, readonly) AFHTTPSessionManager *sessionManager;
+
+- (void)reportResponse:(JDResponse *)response;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

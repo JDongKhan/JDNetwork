@@ -1,9 +1,9 @@
 //
 //  JDNetworkCache.m
-//  JDNetworkCacheExample
+//  JDNetworkCache
 //
-//  Created by wangjindong on 16/6/25.
-//  Copyright © 2016年 wangjindong. All rights reserved.
+//  Created by JD on 16/6/25.
+//  Copyright © 2016年 JD. All rights reserved.
 
 #import "JDNetworkCache.h"
 #import <CommonCrypto/CommonDigest.h>

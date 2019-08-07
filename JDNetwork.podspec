@@ -24,8 +24,8 @@ s.frameworks = 'Foundation'
 s.requires_arc = true
 
 
-s.source_files = 'Framework/*.{h,m}'
-s.public_header_files = 'Framework/*.h'
+s.source_files = 'Framework/**/*.{h,m}'
+s.public_header_files = 'Framework/**/*.h'
 s.dependency 'AFNetworking'
 
 

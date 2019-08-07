@@ -1,29 +1,15 @@
 //
-//  JDNetworkConfig+Private.m
+//  JDNetworkEntity+Private.m
 //  JDNetwork
 //
-//  Created by JD on 2019/6/7.
-//  Copyright © 2019 王金东. All rights reserved.
+//  Created by JD on 2018/6/7.
+//  Copyright © 2018 JD. All rights reserved.
 //
 
-#import "JDNetworkConfig+Private.h"
+#import "JDNetworkEntity+Private.h"
 
-@implementation JDNetworkConfig (Private)
+@implementation JDRequest (Private)
 
-- (AFHTTPSessionManager *)sessionManager {
-    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] init];
-    //request
-    sessionManager.requestSerializer = [self requestSerializer];
-    CGFloat timeoutInterval = self.timeoutInterval;
-    if (timeoutInterval == 0) {
-        timeoutInterval = 20.0f;
-    }
-    sessionManager.requestSerializer.timeoutInterval = timeoutInterval;
-    //response
-    sessionManager.responseSerializer = [self responseSerializer];
-    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"text/json",@"text/javascript",nil];
-    return sessionManager;
-}
 
 - (AFHTTPRequestSerializer<AFURLRequestSerialization> *)requestSerializer {
     switch (self.parameterEncoding) {
@@ -54,8 +40,7 @@
     }
 }
 
-
-- (NSMutableURLRequest *)request {
+- (NSMutableURLRequest *)toRequest:(NSError **)error {
     NSMutableURLRequest *request = nil;
     NSError *serializationError = nil;
     if(self.usedMultipartFormData){
@@ -82,52 +67,69 @@
                  mimeType:@"image/jpeg"];
             }
         } error:&serializationError];
-        
         if (serializationError != nil) {
-            [self reportError:serializationError];
+            *error = serializationError;
             return nil;
         }
         
     }else{
         request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:self.fullURLString parameters:self.parameters error:&serializationError];
-        
         if (serializationError != nil) {
-            [self reportError:serializationError];
+            *error = serializationError;
             return nil;
         }
     }
-    
     return request;
 }
 
 
-- (BOOL)shouldCache {
-    return self.cachePolicy != JDNetworkCachePolicyIgnored;
+
+
+
+- (NSString *)fullURLString {
+    return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
 }
 
+@end
 
-- (BOOL)shouldContinueRequestAfterLoaded {
-    switch (self.cachePolicy) {
-        case JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable:
-        case JDNetworkCachePolicyDoesNotRequestWithinDuration:
-        return NO;
-        default:
-            break;
+@implementation JDResponse (Private)
+
+@end
+
+
+@implementation JDNetworkEntity (Private)
+
+
+- (AFHTTPSessionManager *)sessionManager {
+    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] init];
+    //request
+    sessionManager.requestSerializer = [self.request requestSerializer];
+    CGFloat timeoutInterval = self.request.timeoutInterval;
+    if (timeoutInterval == 0) {
+        timeoutInterval = 20.0f;
     }
-    return YES;
+    sessionManager.requestSerializer.timeoutInterval = timeoutInterval;
+    //response
+    sessionManager.responseSerializer = [self.request responseSerializer];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"text/json",@"text/javascript",nil];
+    return sessionManager;
 }
 
-
+- (void)reportResponse:(JDResponse *)response {
+    if (response.error != nil) {
+        [self reportError:response.error];
+        return;
+    }
+    [self reportSuccess:response.responseObject];
+//    if (originalRequest.shouldCache) {
+//        [JDNetworkCache saveResponseToCacheFile:responseObject andURL:originalRequest.keyForCaching];
+//    }
+    
+}
 
 - (void)reportSuccess:(id)responseObject {
     if (self.successResponse != nil) {
         self.successResponse(responseObject);
-    }
-}
-
-- (void)reportCacheData:(id)responseObject {
-    if (self.cachedDataResponse != nil) {
-        self.cachedDataResponse(responseObject);
     }
 }
 
@@ -137,20 +139,5 @@
     }
 }
 
-- (NSString *)keyForCaching {
-    NSString *urlString = self.fullURLString;
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSAssert(url != nil, @"The url is nil of %@", self.fullURLString);
-    NSString *query = AFQueryStringFromParameters(self.parameters);
-    if (query.length > 0) {
-        NSString *queryToAppend = [NSString stringWithFormat:url.query ? @"&%@" : @"?%@", query];
-        urlString = [urlString stringByAppendingString:queryToAppend];
-    }
-    return urlString;
-}
-
-- (NSString *)fullURLString {
-    return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
-}
-
 @end
+

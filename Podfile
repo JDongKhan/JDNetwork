@@ -7,6 +7,6 @@ target 'JDNetwork' do
 
   # Pods for JDNetwork
 
-pod 'AFNetworking'
+  pod 'JDNetwork', :path => './'
 
 end

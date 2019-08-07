@@ -2,8 +2,8 @@
 //  JDNetwork+myproject.m
 //  JDNetwork
 //
-//  Created by JD on 2019/6/10.
-//  Copyright © 2019 王金东. All rights reserved.
+//  Created by JD on 2018/6/10.
+//  Copyright © 2018 JD. All rights reserved.
 //
 
 #import "JDNetwork+myproject.h"

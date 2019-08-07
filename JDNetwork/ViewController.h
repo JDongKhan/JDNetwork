@@ -2,8 +2,8 @@
 //  ViewController.h
 //  JDNetwork
 //
-//  Created by 王金东 on 2017/7/20.
-//  Copyright © 2017年 王金东. All rights reserved.
+//  Created by JD on 2017/7/20.
+//  Copyright © 2017年 JD. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
