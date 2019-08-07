@@ -36,7 +36,9 @@
 - (IBAction)requestAction1:(id)sender {
     JDNetwork
     .POST(@"https://baidu.com")
-    .parametersForKey(@"username",@"jd")
+    .parameters(@{
+                  @"username" : @"jd"
+                  })
     .start();
 }
 
