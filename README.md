@@ -29,9 +29,12 @@ PS:出于兴趣写点快速开发的组件。
 ###  三、易扩展
 
 
+
 ###  四、等等
 
-###  Demo
+
+
+###  五、 Demo
 
 ```objc
 
@@ -45,7 +48,6 @@ PS:出于兴趣写点快速开发的组件。
 
 //登录拦截器
 - (IBAction)requestAction2:(id)sender {
-    //因为url配置过了 我就不配置了
     JDNetwork
     .get(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
