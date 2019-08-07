@@ -2,8 +2,8 @@
 //  JDNetwork+Cache.h
 //  JDNetwork
 //
-//  Created by JD on 2018/8/7.
-//  Copyright © 2018 JD. All rights reserved.
+//  Created by JD on 2015/8/7.
+//  Copyright © 2015 JD. All rights reserved.
 //
 
 #import "JDNetwork.h"

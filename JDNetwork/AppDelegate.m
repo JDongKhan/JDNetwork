@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  JDNetwork
 //
-//  Created by JD on 2017/7/20.
-//  Copyright © 2017年 JD. All rights reserved.
+//  Created by JD on 2015/7/20.
+//  Copyright © 2015年 JD. All rights reserved.
 //
 
 #import "AppDelegate.h"
