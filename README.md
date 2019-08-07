@@ -38,7 +38,7 @@ PS:出于兴趣写点快速开发的组件。
     
     4、Entity：自定义的request、response等，方便管理与使用
     
-    5、JDNetwork：改类是对外使用的唯一入口，里面包含了很多常用的功能。比如
+    5、JDNetwork：该类是对外使用的唯一入口，里面包含了很多常用的功能。比如
     
         5.1、timeoutInterval：超时设置
         
