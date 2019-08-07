@@ -19,8 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSInteger)priority;
 
-- (JDResponse *)response:(JDResponse *)response;
-
+- (void)disposeOfResponse:(JDResponse *)response;
 
 @end
 

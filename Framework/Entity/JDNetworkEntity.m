@@ -24,8 +24,21 @@
     return _request;
 }
 
+- (JDResponse *)response {
+    if (_response == nil) {
+        _response = [[JDResponse alloc] init];
+    }
+    return _response;
+}
+
+- (void)addInterceptor:(id<JDNetworkInterceptor>)interceptor {
+    NSMutableArray *interceptors = (NSMutableArray *)self.interceptors;
+    [interceptors addObject:interceptor];
+}
+
 - (void)dealloc {
     NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
+
 
 @end

@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDResponse : NSObject<NSCoding>
+typedef NS_ENUM(NSInteger, JDNetworkResponseEncoding) {
+    JDNetworkResponseHTTPEncoding,
+    JDNetworkResponseJSONEncoding,
+    JDNetworkResponseXMLParserEncoding,
+    JDNetworkResponsePropertyListEncoding,
+    JDNetworkResponseImageEncoding,
+};
+
+@interface JDResponse : NSObject<NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSURLResponse *response;
 
@@ -18,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSError *_Nullable error;
 
+/**
+ 响应的类型
+ */
+@property (nonatomic, assign) JDNetworkResponseEncoding responseEncoding;
 
 @end
 

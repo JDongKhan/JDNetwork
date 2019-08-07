@@ -23,7 +23,7 @@
     }
     JDNetworkEntity *entity = chain.entity;
     JDRequest *request = entity.request;
-    [request.parameters setObject:@"1" forKey:@"userID"];
+    [request addParameter:@"1" forKey:@"userID"];
     return NO;
 }
 

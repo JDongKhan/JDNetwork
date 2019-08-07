@@ -11,6 +11,7 @@
 #import "JDNetwork+myproject.h"
 #import "LoginInterceptor.h"
 #import "JDNetwork+Cache.h"
+#import "HttpLoggingInterceptor.h"
 
 @interface ViewController ()
 
@@ -33,7 +34,7 @@
 - (IBAction)requestAction1:(id)sender {
     JDNetwork.post(@"")
     .parametersForKey(@"username",@"wjd")
-    .execute();
+    .start();
 }
 
 //登录拦截器
@@ -44,10 +45,10 @@
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
-        NSLog(@"result :%@",result);
-    }).errorResponse(^(NSError * _Nonnull error) {
-        NSLog(@"error :%@",error.description);
-    }).execute();
+    })
+    .errorResponse(^(NSError * _Nonnull error) {
+    })
+    .start();
 }
 
 //缓存拦截器
@@ -57,10 +58,10 @@
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
-        NSLog(@"result :%@",result);
-    }).errorResponse(^(NSError * _Nonnull error) {
-        NSLog(@"error :%@",error.description);
-    }).execute();
+    })
+    .errorResponse(^(NSError * _Nonnull error) {
+    })
+    .start();
 }
 
 //登录+缓存拦截器
@@ -68,18 +69,19 @@
     JDNetwork
     .get(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
+    .addInterceptor([[HttpLoggingInterceptor alloc] init])
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .successResponse(^(id  _Nonnull result) {
-        NSLog(@"result :%@",result);
-    }).errorResponse(^(NSError * _Nonnull error) {
-        NSLog(@"error : %@",error.description);
-    }).execute();
+    })
+    .errorResponse(^(NSError * _Nonnull error) {
+    })
+    .start();
 }
 
 
 - (IBAction)requestAction5:(id)sender {
-    
+    JDNetwork.userService.get(@"");
 }
 
 @end

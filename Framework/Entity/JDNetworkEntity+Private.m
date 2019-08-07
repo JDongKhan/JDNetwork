@@ -25,25 +25,10 @@
     }
 }
 
-- (AFHTTPResponseSerializer<AFURLResponseSerialization> *)responseSerializer {
-    switch (self.responseEncoding) {
-        case JDNetworkResponseJSONEncoding:
-            return [AFJSONResponseSerializer serializer];
-        case JDNetworkResponseXMLParserEncoding:
-            return [AFXMLParserResponseSerializer serializer];
-        case JDNetworkResponsePropertyListEncoding:
-            return [AFPropertyListResponseSerializer serializer];
-        case JDNetworkResponseImageEncoding:
-            return [AFImageResponseSerializer serializer];
-        default:
-            return [AFHTTPResponseSerializer serializer];
-    }
-}
-
 - (NSMutableURLRequest *)toRequest:(NSError **)error {
     NSMutableURLRequest *request = nil;
     NSError *serializationError = nil;
-    if(self.usedMultipartFormData){
+    if (self.usedMultipartFormData) {
         //TODO下面的方法没有测试，待完善
         //有文件
         NSMutableDictionary *_files;
@@ -72,7 +57,7 @@
             return nil;
         }
         
-    }else{
+    } else {
         request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:self.fullURLString parameters:self.parameters error:&serializationError];
         if (serializationError != nil) {
             *error = serializationError;
@@ -82,10 +67,6 @@
     return request;
 }
 
-
-
-
-
 - (NSString *)fullURLString {
     return [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
 }
@@ -93,6 +74,23 @@
 @end
 
 @implementation JDResponse (Private)
+
+
+- (AFHTTPResponseSerializer<AFURLResponseSerialization> *)responseSerializer {
+    switch (self.responseEncoding) {
+            case JDNetworkResponseJSONEncoding:
+            return [AFJSONResponseSerializer serializer];
+            case JDNetworkResponseXMLParserEncoding:
+            return [AFXMLParserResponseSerializer serializer];
+            case JDNetworkResponsePropertyListEncoding:
+            return [AFPropertyListResponseSerializer serializer];
+            case JDNetworkResponseImageEncoding:
+            return [AFImageResponseSerializer serializer];
+        default:
+            return [AFHTTPResponseSerializer serializer];
+    }
+}
+
 
 @end
 
@@ -110,7 +108,7 @@
     }
     sessionManager.requestSerializer.timeoutInterval = timeoutInterval;
     //response
-    sessionManager.responseSerializer = [self.request responseSerializer];
+    sessionManager.responseSerializer = [self.response responseSerializer];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"text/json",@"text/javascript",nil];
     return sessionManager;
 }

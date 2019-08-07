@@ -10,7 +10,7 @@
 
 @interface JDNetwork ()
 
-@property (nonatomic, strong) JDNetworkOperation *operation;
+@property (nonatomic, weak) JDNetworkOperation *operation;
 
 @end
 
@@ -66,14 +66,14 @@
 
 - (JDNetwork *(^)(id<JDNetworkInterceptor>))addInterceptor {
     return ^(id<JDNetworkInterceptor> interceptor){
-        [self->entity.interceptors addObject:interceptor];
+        [self->entity addInterceptor:interceptor];
         return self;
     };
 }
 
 - (JDNetwork *(^)(NSString *key,id obj))parametersForKey {
     return ^(NSString *key,id obj){
-        [self->entity.request.parameters setValue:obj forKey:key];
+        [self->entity.request addParameter:obj forKey:key];
         return self;
     };
 }
@@ -108,7 +108,7 @@
 
 - (JDNetwork *(^)(JDNetworkResponseEncoding))responseEncoding {
     return ^(JDNetworkResponseEncoding responseEncoding) {
-        self->entity.request.responseEncoding = responseEncoding;
+        self->entity.response.responseEncoding = responseEncoding;
         return self;
     };
 }
@@ -134,7 +134,7 @@
     };
 }
 
-- (void(^)(void))execute {
+- (void(^)(void))start {
     __weak JDNetwork *_weaskSelf = self;
     return ^(void){
         [_weaskSelf _start];
@@ -160,7 +160,6 @@
     [operation start];
     self.operation = operation;
 }
-
 
 - (void)dealloc {
     NSLog(@"%@ dealloc",NSStringFromClass(self.class));

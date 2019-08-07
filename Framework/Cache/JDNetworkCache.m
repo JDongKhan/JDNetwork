@@ -55,7 +55,7 @@
     path = [path stringByAppendingPathComponent:@"JDNetworkCache"];
     
     [self checkDirectory:path];//check路径
-    JDNetworkDebugLog(@"path = %@",path);
+    //JDNetworkDebugLog(@"path = %@",path);
     
     //文件名
     NSString *cacheFileNameString = [NSString stringWithFormat:@"URL:%@ AppVersion:%@",keyForCaching,[self appVersionString]];

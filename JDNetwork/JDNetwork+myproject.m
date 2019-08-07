@@ -11,7 +11,9 @@
 @implementation JDNetwork (myproject)
 
 + (JDNetwork *)userService {
-    return JDNetwork.baseURLString(@"https://www.baidu.com").responseEncoding(JDNetworkResponseXMLParserEncoding);
+    return JDNetwork
+    .baseURLString(@"https://www.baidu.com")
+    .responseEncoding(JDNetworkResponseXMLParserEncoding);
 }
 
 @end

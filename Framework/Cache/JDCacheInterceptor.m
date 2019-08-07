@@ -46,11 +46,10 @@
     return NO;
 }
 
-- (JDResponse *)response:(JDResponse *)response {
+- (void)disposeOfResponse:(JDResponse *)response {
     if (response.error == nil) {
        // [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
     }
-    return response;
 }
 
 @end

@@ -17,6 +17,11 @@
     return self;
 }
 
+- (void)addParameter:(id)parameter forKey:(NSString *)key {
+    NSMutableDictionary *parameters = (NSMutableDictionary *)self.parameters;
+    [parameters setObject:parameter forKey:key];
+}
+
 - (void)dealloc {
     NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }

@@ -23,11 +23,11 @@
 @implementation JDNetworkOperation
 
 - (void)start {
-    
     //拦截处理request
     JDNetworkEntity *entity = self.entity;
     JDNetworkChain *chain = [[JDNetworkChain alloc] initWithOperation:self];
     chain.entity = entity;
+    
     BOOL intercept = NO;
     NSArray *sortInterceptors = [self sortArrayBypriority:entity.interceptors];
     for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
@@ -38,6 +38,7 @@
     if (intercept) {
         return;
     }
+    
     NSError *error = nil;
     JDRequest *resultRequest = chain.entity.request;
     NSURLRequest *request = [resultRequest toRequest:&error];
@@ -47,15 +48,13 @@
     }
     
     void (^completionBlock)(NSURLResponse *,id,NSError *) = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error){
-        JDResponse *myResponse = [[JDResponse alloc] init];
-        myResponse.response = response;
-        myResponse.responseObject = responseObject;
-        myResponse.error = error;
-        
-        JDResponse *resultResponse = myResponse;
+        JDResponse *resultResponse = [entity.response copy];
+        resultResponse.response = response;
+        resultResponse.responseObject = responseObject;
+        resultResponse.error = error;
         for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
-            if ([interceptor respondsToSelector:@selector(response:)]) {
-                resultResponse = [interceptor response:resultResponse];
+            if ([interceptor respondsToSelector:@selector(disposeOfResponse:)]) {
+                [interceptor disposeOfResponse:resultResponse];
             }
         }
         [entity reportResponse:resultResponse];
@@ -69,7 +68,7 @@
     NSURLSessionTask *task = nil;
     
     NSAssert(request != nil, @"request is null ");
-    if(resultRequest.usedMultipartFormData) {
+    if (resultRequest.usedMultipartFormData) {
         task = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } completionHandler:completionBlock];

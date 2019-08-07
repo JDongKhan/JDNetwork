@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  开始
  */
-@property (nonatomic, readonly, copy) void(^execute)(void);
+@property (nonatomic, readonly, copy) void(^start)(void);
 
 /**
  取消

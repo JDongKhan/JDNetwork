@@ -17,15 +17,6 @@ typedef NS_ENUM(NSInteger, JDNetworkParameterEncoding) {
     JDNetworkParameterPropertyListEncoding,
 };
 
-typedef NS_ENUM(NSInteger, JDNetworkResponseEncoding) {
-    JDNetworkResponseHTTPEncoding,
-    JDNetworkResponseJSONEncoding,
-    JDNetworkResponseXMLParserEncoding,
-    JDNetworkResponsePropertyListEncoding,
-    JDNetworkResponseImageEncoding,
-};
-
-
 @interface JDRequest : NSObject
 
 /**
@@ -41,7 +32,7 @@ typedef NS_ENUM(NSInteger, JDNetworkResponseEncoding) {
 /**
  请求的参数
  */
-@property (nonatomic, strong) NSMutableDictionary *parameters;
+@property (nonatomic, strong) NSDictionary<NSString*, id> *parameters;
 
 /**
  参数类型
@@ -63,11 +54,7 @@ typedef NS_ENUM(NSInteger, JDNetworkResponseEncoding) {
  */
 @property (nonatomic, assign) CGFloat timeoutInterval;
 
-/**
- 响应的类型
- */
-@property (nonatomic, assign) JDNetworkResponseEncoding responseEncoding;
-
+- (void)addParameter:(id)parameter forKey:(NSString *)key;
 
 @end
 

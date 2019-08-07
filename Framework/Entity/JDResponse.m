@@ -10,13 +10,17 @@
 
 @implementation JDResponse
 
+- (id)copyWithZone:(NSZone *)zone {
+    JDResponse *response = [[[self class] allocWithZone:zone] init];
+    response.responseEncoding = self.responseEncoding;
+    return response;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder {
-//    [coder encodeObject:self.response forKey:@"response"];
     [coder encodeObject:self.responseObject forKey:@"responseObject"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
-//    self.response = [coder decodeObjectForKey:@"response"];
     self.responseObject = [coder decodeObjectForKey:@"responseObject"];
     return self;
 }

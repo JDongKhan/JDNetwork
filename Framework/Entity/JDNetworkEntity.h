@@ -13,19 +13,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol JDNetworkInterceptor;
+
 typedef void (^JDNetworkCompletionBlock)(id result);
 typedef void (^JDNetworkErrorBlock)(NSError* error);
 
 @interface JDNetworkEntity : NSObject
 
+/**
+ request
+ */
 @property (nonatomic, strong) JDRequest *request;
 
+/**
+ response
+ */
 @property (nonatomic, strong) JDResponse *response;
 
 /**
  拦截器
  */
-@property (nonatomic, strong) NSMutableArray *interceptors;
+@property (nonatomic, strong, readonly) NSArray<id<JDNetworkInterceptor>> *interceptors;
 
 /**
  请求成功block
@@ -41,6 +49,14 @@ typedef void (^JDNetworkErrorBlock)(NSError* error);
  请求失败block
  */
 @property (nonatomic, copy) JDNetworkErrorBlock errorResponse;
+
+
+/**
+ 添加拦截器
+
+ @param interceptor 拦截器
+ */
+- (void)addInterceptor:(id<JDNetworkInterceptor>)interceptor;
 
 @end
 
