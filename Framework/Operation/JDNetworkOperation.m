@@ -11,6 +11,7 @@
 #import "JDNetworkEntity+Private.h"
 #import "JDNetworkCache.h"
 #import "JDNetworkInterceptor.h"
+#import "JDNetworkInterceptorCenter.h"
 
 @interface JDNetworkOperation()
 
@@ -25,60 +26,51 @@
 - (void)start {
     //拦截处理request
     JDNetworkEntity *entity = self.entity;
-    JDNetworkChain *chain = [[JDNetworkChain alloc] initWithOperation:self];
+    JDNetworkRequestChain *chain = [[JDNetworkRequestChain alloc] init];
     chain.entity = entity;
     
-    //common interceptor
-    BOOL intercept = NO;
-    NSArray *sortInterceptors = [entity sortInterceptorsArrayByPriority];
-    for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
-        if ((intercept = [interceptor intercept:chain])) {
-            break;
+    JDNetworkRequestInterceptorCenter *interceptorCenter = [[JDNetworkRequestInterceptorCenter alloc] init];
+    chain.interceptorCenter = interceptorCenter;
+
+    [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
+    [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+    [interceptorCenter complete:^(BOOL complete) {
+        if (complete) {
+            [self request:entity];
         }
-    }
-    
-    //finally interceptor
-    NSArray *sortFinallyInterceptors = [entity sortFinallyInterceptorsArrayByPriority];
-    for (id<JDNetworkInterceptor> interceptor in sortFinallyInterceptors) {
-        if ((intercept = [interceptor intercept:chain])) {
-            break;
-        }
-    }
-    
-    if (intercept) {
-        return;
-    }
-    
-    NSError *error = nil;
-    JDRequest *resultRequest = chain.entity.request;
-    NSURLRequest *request = [resultRequest convertToURLRequest:&error];
-    
+    }];
+    [interceptorCenter run:chain];
+}
+
+- (void)request:(JDNetworkEntity *)entity  {
     if (self.task_running) {
         return;
     }
-    
+    NSError *error = nil;
+    JDRequest *resultRequest = entity.request;
+    NSURLRequest *request = [resultRequest convertToURLRequest:&error];
     void (^completionBlock)(NSURLResponse *,id,NSError *) = ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error){
+        
         JDResponse *resultResponse = [entity.response copy];
         resultResponse.response = response;
         resultResponse.responseObject = responseObject;
         resultResponse.error = error;
         resultResponse.source = JDResponseNetworkSource;
         
-        //common interceptor
-        for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
-            if ([interceptor respondsToSelector:@selector(disposeOfResponse:)]) {
-                [interceptor disposeOfResponse:resultResponse];
-            }
-        }
+        JDNetworkResponseChain *chain = [[JDNetworkResponseChain alloc] init];
+        chain.response = resultResponse;
         
-        //finally interceptor
-        for (id<JDNetworkInterceptor> interceptor in sortFinallyInterceptors) {
-            if ([interceptor respondsToSelector:@selector(disposeOfResponse:)]) {
-                [interceptor disposeOfResponse:resultResponse];
+        JDNetworkResponseInterceptorCenter *interceptorCenter = [[JDNetworkResponseInterceptorCenter alloc] init];
+        chain.interceptorCenter = interceptorCenter;
+
+        [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
+            [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+        [interceptorCenter complete:^(BOOL complete) {
+            if (complete) {
+                [entity reportResponse:resultResponse];
             }
-        }
-    
-        [entity reportResponse:resultResponse];
+        }];
+        [interceptorCenter run:chain];
         
         self.task_running = NO;
     };

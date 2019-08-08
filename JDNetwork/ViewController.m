@@ -63,6 +63,8 @@
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .success(^(id result) {
     })
+    .cache(^(id  result) {
+    })
     .error(^(NSError *error) {
     })
     .start();
@@ -78,6 +80,8 @@
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .success(^(id  result) {
+    })
+    .cache(^(id  result) {
     })
     .error(^(NSError *error) {
     })
@@ -96,6 +100,8 @@
     .parametersForKey(@"bk_length", @"600")
     .cachePolicy(JDNetworkCachePolicyDoesNotRequestWithinDuration)
     .success(^(id  result) {
+    })
+    .cache(^(id  result) {
     })
     .error(^(NSError *error) {
     })

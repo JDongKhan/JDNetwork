@@ -1,5 +1,5 @@
 //
-//  JDNetworkChain.h
+//  JDNetworkRequestChain.h
 //  JDNetwork
 //
 //  Created by JD on 2015/8/7.
@@ -8,17 +8,34 @@
 
 #import <Foundation/Foundation.h>
 #import "JDNetworkEntity.h"
-#import "JDNetworkOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetworkChain : NSObject
+@class JDNetworkRequestInterceptorCenter;
 
-- (instancetype)initWithOperation:(JDNetworkOperation *)operation;
+@interface JDNetworkRequestChain : NSObject
+
+@property (nonatomic, strong) JDNetworkRequestInterceptorCenter *interceptorCenter;
 
 @property (nonatomic, strong) JDNetworkEntity *entity;
 
-- (void)send;
+- (void)restart;
+
+- (void)stop;
+
+@end
+
+@class JDNetworkResponseInterceptorCenter;
+
+@interface JDNetworkResponseChain : NSObject
+
+@property (nonatomic, strong) JDNetworkResponseInterceptorCenter *interceptorCenter;
+
+@property (nonatomic, strong) JDResponse *response;
+
+- (void)restart;
+
+- (void)stop;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  JDNetworkChain.m
+//  JDNetworkRequestChain.m
 //  JDNetwork
 //
 //  Created by JD on 2015/8/7.
@@ -7,28 +7,45 @@
 //
 
 #import "JDNetworkChain.h"
+#import "JDNetworkInterceptorCenter.h"
 
-@interface JDNetworkChain ()
-
-@property (nonatomic, strong) JDNetworkOperation *operation;
+@interface JDNetworkRequestChain ()
 
 @end
 
-@implementation JDNetworkChain
+@implementation JDNetworkRequestChain
 
-- (instancetype)initWithOperation:(JDNetworkOperation *)operation {
-    if (self = [super init]) {
-        self.operation = operation;
-    }
-    return self;
+- (void)restart {
+    [self.interceptorCenter restart];
 }
 
-- (void)send {
-    [self.operation start];
+- (void)stop {
+    [self.interceptorCenter stop];
 }
 
 - (void)dealloc {
 //    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+}
+
+@end
+
+
+@interface JDNetworkResponseChain ()
+
+@end
+
+@implementation JDNetworkResponseChain
+
+- (void)restart {
+    [self.interceptorCenter restart];
+}
+
+- (void)stop {
+    [self.interceptorCenter stop];
+}
+
+- (void)dealloc {
+    //    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 @end

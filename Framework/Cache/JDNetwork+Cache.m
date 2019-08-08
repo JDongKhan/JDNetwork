@@ -20,9 +20,9 @@
     };
 }
 
-- (JDNetwork *(^)(JDNetworkCompletionBlock cachedDataResponse))cachedDataResponse {
-    return ^(JDNetworkCompletionBlock cachedDataResponse){
-        self->entity.cache = cachedDataResponse ;
+- (JDNetwork *(^)(JDNetworkCompletionBlock cache))cache {
+    return ^(JDNetworkCompletionBlock cache){
+        self->entity.cache = cache;
         return self;
     };
 }

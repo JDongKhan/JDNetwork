@@ -7,6 +7,7 @@
 //
 
 #import "HttpLoggingInterceptor.h"
+#import "JDNetworkChain.h"
 
 @implementation HttpLoggingInterceptor
 
@@ -14,14 +15,13 @@
     return -2;
 }
 
-- (BOOL)intercept:(JDNetworkChain *)chain {
+- (void)request:(JDNetworkRequestChain *)chain {
     NSLog(@"request : %@",chain.entity.request.fullURLString);
     NSLog(@"parameters : %@",chain.entity.request.parameters);
-    return NO;
 }
 
-- (void)disposeOfResponse:(JDResponse *)response {
-    NSLog(@"response : %@",response.responseObject);
+- (void)response:(JDNetworkResponseChain *)chain  {
+    NSLog(@"response : %@",chain.response.responseObject);
 }
 
 @end

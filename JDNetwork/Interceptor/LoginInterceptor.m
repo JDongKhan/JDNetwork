@@ -8,6 +8,7 @@
 
 #import "LoginInterceptor.h"
 #import "LoginManager.h"
+#import "JDNetworkChain.h"
 
 @implementation LoginInterceptor
 
@@ -15,20 +16,20 @@
     return 999;
 }
 
-- (BOOL)intercept:(JDNetworkChain *)chain {
+- (void)request:(JDNetworkRequestChain *)chain {
     //如果没有登录则拦截掉
     if (![LoginManager isLogin]) {
         //去登陆
         [LoginManager login:^(BOOL success) {
             //继续请求
-            [chain send];
+            [chain restart];
         }];
-        return YES;
+        [chain stop];
+        return;
     }
     JDNetworkEntity *entity = chain.entity;
     JDRequest *request = entity.request;
     [request addParameter:@"1" forKey:@"userID"];
-    return NO;
 }
 
 @end

@@ -7,18 +7,20 @@
 //
 
 #import "XMLInterceptor.h"
+#import "JDResponse.h"
+#import "JDNetworkChain.h"
 
 @implementation XMLInterceptor
 
-- (BOOL)intercept:(JDNetworkChain *)chain {
-    return NO;
+- (void)request:(JDNetworkRequestChain *)chain {
 }
 
 - (NSInteger)priority {
     return 1;
 }
 
-- (void)disposeOfResponse:(JDResponse *)response {
+- (void)response:(JDNetworkResponseChain *)chain {
+    JDResponse *response = chain.response;
     if ([response.responseObject isKindOfClass:[NSXMLParser class]]) {
 //        NSXMLParser *parser = response.responseObject;
         //开始解析

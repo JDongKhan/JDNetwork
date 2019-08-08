@@ -11,6 +11,7 @@
 #import "JDRequest+Cache.h"
 #import "JDNetwork+Cache.h"
 #import "JDNetworkEntity+Cache.h"
+#import "JDNetworkChain.h"
 
 
 @implementation JDCacheInterceptor {
@@ -22,7 +23,7 @@
     return -1;
 }
 
-- (BOOL)intercept:(JDNetworkChain *)chain {
+- (void)request:(JDNetworkRequestChain *)chain {
     JDNetworkEntity *entity = chain.entity;
     JDRequest *request = entity.request;
      _shouldCache = request.shouldCache;
@@ -34,16 +35,17 @@
             response.source = JDResponseCacheSource;
             entity.response = response;
             [entity reportCacheData:response.responseObject];
-        }
-        //判断是否继续请求
-        if (![request shouldContinueRequestAfterLoaded]) {
-            return YES;
+            
+            //判断是否继续请求
+            if (![request shouldContinueRequestAfterLoaded]) {
+                [chain stop];
+            }
         }
     }
-    return NO;
 }
 
-- (void)disposeOfResponse:(JDResponse *)response {
+- (void)response:(JDNetworkResponseChain *)chain {
+    JDResponse *response = chain.response;
     if (response.error == nil && _shouldCache) {
         [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
     }

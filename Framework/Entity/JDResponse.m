@@ -21,7 +21,9 @@ NSString *const JDResponseCacheSource = @"Cache";
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.responseObject forKey:@"responseObject"];
+    if ([self.responseObject respondsToSelector:@selector(encodeWithCoder:)]) {
+        [coder encodeObject:self.responseObject forKey:@"responseObject"];
+    }
     [coder encodeInteger:self.responseEncoding forKey:@"responseEncoding"];
 }
 

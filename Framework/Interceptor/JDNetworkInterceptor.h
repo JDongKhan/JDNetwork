@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JDNetworkChain.h"
+
+@class JDNetworkRequestChain;
+@class JDNetworkResponseChain;
+@class JDResponse;
 
 /**
- 这块不好设计，因为AF的请求是异步的导致很多流程无法窜起来，等后续有好的想法再优化
+ 这块不好设计，因为AF的请求是异步的导致请求和响应流程无法窜起来，等后续有好的想法再优化
 
  */
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDNetworkInterceptor <NSObject>
-
-- (BOOL)intercept:(JDNetworkChain *)chain;
 
 @optional
 
@@ -28,7 +29,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSInteger)priority;
 
-- (void)disposeOfResponse:(JDResponse *)response;
+/**
+ 拦截请求
+
+ @param chain 拦截链
+ */
+- (void)request:(JDNetworkRequestChain *)chain;
+
+/**
+ 拦截响应
+
+ @param chain 拦截链
+ */
+- (void)response:(JDNetworkResponseChain *)chain;
 
 @end
 
