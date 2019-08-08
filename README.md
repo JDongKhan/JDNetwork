@@ -29,6 +29,7 @@ PS:出于兴趣写点快速开发的组件。
 ### 三、支持Cache
 
     缓存策略分:
+    
         JDNetworkCachePolicyIgnored:没有缓存
             
         JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable：无网使用缓存
