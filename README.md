@@ -26,7 +26,19 @@ PS:出于兴趣写点快速开发的组件。
     
     5、等等
     
-###  三、结构清晰
+### 三、支持Cache
+
+    缓存策略分:
+        JDNetworkCachePolicyIgnored:没有缓存
+            
+        JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable：无网使用缓存
+            
+        JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest:先加载缓存后请求
+            
+        JDNetworkCachePolicyDoesNotRequestWithinDuration:使用缓存不再请求
+            
+    
+###  四、结构清晰
 
     该项目共分为五小模块（每个模块都很小，所以是小模块）
     
@@ -55,13 +67,15 @@ PS:出于兴趣写点快速开发的组件。
         5.7、其他
 
 
-###  四、易扩展
+###  五、易扩展
 
     通过拦截器可以很容易扩展功能
 
     项目中的缓存、登录检测、日志、解析等模块就很容易实现
 
-###  五、 Demo
+
+
+##   Demo
 
 ```objc
 
@@ -81,9 +95,9 @@ PS:出于兴趣写点快速开发的组件。
     .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -94,9 +108,9 @@ PS:出于兴趣写点快速开发的组件。
     .GET(@"https://baidu.com")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -110,9 +124,9 @@ PS:出于兴趣写点快速开发的组件。
     .addInterceptor([[XMLInterceptor alloc] init])
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -128,9 +142,9 @@ PS:出于兴趣写点快速开发的组件。
     .parametersForKey(@"bk_key", @"haha")
     .parametersForKey(@"bk_length", @"600")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }

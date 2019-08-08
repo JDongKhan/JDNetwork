@@ -48,9 +48,9 @@
     .GET(@"https://baidu.com")
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -61,9 +61,9 @@
     .GET(@"https://baidu.com")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -77,9 +77,9 @@
     .addInterceptor([[XMLInterceptor alloc] init])
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
-    .successResponse(^(id  _Nonnull result) {
+    .success(^(id  result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }
@@ -94,10 +94,10 @@
     .parametersForKey(@"appid", @"379020")
     .parametersForKey(@"bk_key", @"haha")
     .parametersForKey(@"bk_length", @"600")
-    .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
-    .successResponse(^(id  _Nonnull result) {
+    .cachePolicy(JDNetworkCachePolicyDoesNotRequestWithinDuration)
+    .success(^(id  result) {
     })
-    .errorResponse(^(NSError * _Nonnull error) {
+    .error(^(NSError *error) {
     })
     .start();
 }

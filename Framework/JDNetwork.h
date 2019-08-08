@@ -115,12 +115,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  success 回调
  */
-@property (nonatomic, readonly, copy) JDNetwork *(^successResponse)(JDNetworkCompletionBlock successResponse);
+@property (nonatomic, readonly, copy) JDNetwork *(^success)(JDNetworkCompletionBlock success);
 
 /**
  error 回调
  */
-@property (nonatomic, readonly, copy) JDNetwork *(^errorResponse)(JDNetworkErrorBlock errorResponse);
+@property (nonatomic, readonly, copy) JDNetwork *(^error)(JDNetworkErrorBlock error);
 
 /**
  开始

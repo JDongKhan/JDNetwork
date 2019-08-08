@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDNetworkInterceptor;
 
-typedef void (^JDNetworkCompletionBlock)(id result);
+typedef void (^JDNetworkCompletionBlock)(id _Nullable result);
 
-typedef void (^JDNetworkErrorBlock)(NSError* error);
+typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
 
 @interface JDNetworkEntity : NSObject
 
@@ -39,17 +39,12 @@ typedef void (^JDNetworkErrorBlock)(NSError* error);
 /**
  请求成功block
  */
-@property (nonatomic, copy) JDNetworkCompletionBlock successResponse;
-
-/**
- 缓存数据
- */
-@property (nonatomic, copy) JDNetworkCompletionBlock cachedDataResponse;
+@property (nonatomic, copy) JDNetworkCompletionBlock success;
 
 /**
  请求失败block
  */
-@property (nonatomic, copy) JDNetworkErrorBlock errorResponse;
+@property (nonatomic, copy) JDNetworkErrorBlock error;
 
 
 /**

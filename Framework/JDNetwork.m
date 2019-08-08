@@ -189,16 +189,16 @@
     };
 }
 
-- (JDNetwork *(^)(JDNetworkCompletionBlock successResponse))successResponse {
-    return ^(JDNetworkCompletionBlock successResponse){
-        self->entity.successResponse = successResponse ;
+- (JDNetwork *(^)(JDNetworkCompletionBlock success))success {
+    return ^(JDNetworkCompletionBlock success){
+        self->entity.success = success;
         return self;
     };
 }
 
-- (JDNetwork *(^)(JDNetworkErrorBlock errorResponse))errorResponse {
-    return ^(JDNetworkErrorBlock errorResponse){
-        self->entity.errorResponse = errorResponse ;
+- (JDNetwork *(^)(JDNetworkErrorBlock error))error {
+    return ^(JDNetworkErrorBlock error){
+        self->entity.error = error;
         return self;
     };
 }

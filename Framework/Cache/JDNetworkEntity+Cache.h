@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JDNetworkEntity (Cache)
 
+/**
+ 缓存数据
+ */
+@property (nonatomic, copy) JDNetworkCompletionBlock cache;
+
+
 - (void)reportCacheData:(id)responseObject;
 
 @end

@@ -124,14 +124,14 @@
 }
 
 - (void)reportSuccess:(id)responseObject {
-    if (self.successResponse != nil) {
-        self.successResponse(responseObject);
+    if (self.success != nil) {
+        self.success(responseObject);
     }
 }
 
 - (void)reportError:(NSError *)error {
-    if (self.errorResponse != nil) {
-        self.errorResponse(error);
+    if (self.error != nil) {
+        self.error(error);
     }
 }
 
