@@ -27,7 +27,7 @@
 - (void)start {
     //拦截处理request
     JDNetworkEntity *entity = self.entity;
-    JDNetworkChain<JDNetworkEntity *> *chain = [[JDNetworkChain alloc] init];
+    JDNetworkChain<JDNetworkEntity *> *chain = [JDNetworkChain requestChain];
     chain.object = entity;
     
     [chain addInterceptors:[entity sortInterceptorsArrayByPriority]];
@@ -57,7 +57,7 @@
         resultResponse.source = JDResponseNetworkSource;
 
         //响应链
-        JDNetworkChain<JDResponse *> *chain = [[JDNetworkChain alloc] init];
+        JDNetworkChain<JDResponse *> *chain = [JDNetworkChain responseChain];
         chain.object = resultResponse;
         [chain addInterceptors:[entity sortInterceptorsArrayByPriority]];
         [chain addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
