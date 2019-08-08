@@ -12,7 +12,7 @@
 
 @implementation XMLInterceptor
 
-- (void)request:(JDNetworkRequestChain *)chain {
+- (void)request:(JDNetworkChain *)chain {
 }
 
 - (NSInteger)priority {
@@ -22,8 +22,8 @@
 
 //这里是拦截用的，不过也可以做解析器使用去更新chain里面的数据
 
-- (void)response:(JDNetworkResponseChain *)chain {
-    JDResponse *response = chain.response;
+- (void)response:(JDNetworkChain *)chain {
+    JDResponse *response = (JDResponse *)chain.object;
     if ([response.responseObject isKindOfClass:[NSXMLParser class]]) {
 //        NSXMLParser *parser = response.responseObject;
         //开始解析

@@ -1,5 +1,5 @@
 //
-//  JDNetworkRequestChain.m
+//  JDNetworkChain.m
 //  JDNetwork
 //
 //  Created by JD on 2015/8/7.
@@ -9,18 +9,23 @@
 #import "JDNetworkChain.h"
 #import "JDNetworkInterceptorCenter.h"
 
-@interface JDNetworkRequestChain ()
+@implementation JDNetworkChain 
 
-@end
-
-@implementation JDNetworkRequestChain {
-    JDNetworkRequestInterceptorCenter *_interceptorCenter;
++ (instancetype)requestChain {
+    JDNetworkChain *chain = [[JDNetworkChain alloc] init];
+    chain.interceptorCenter.selector = @selector(request:);
+    return chain;
 }
 
++ (instancetype)responseChain {
+    JDNetworkChain *chain = [[JDNetworkChain alloc] init];
+    chain.interceptorCenter.selector = @selector(response:);
+    return chain;
+}
 
-- (JDNetworkRequestInterceptorCenter *)interceptorCenter {
+- (JDNetworkInterceptorCenter *)interceptorCenter {
     if (_interceptorCenter == nil) {
-        _interceptorCenter = [[JDNetworkRequestInterceptorCenter alloc] init];
+        _interceptorCenter = [[JDNetworkInterceptorCenter alloc] init];
     }
     return _interceptorCenter;
 }
@@ -41,47 +46,10 @@
     [self.interceptorCenter pause];
 }
 
-- (void)dealloc {
-//    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
-}
-
-@end
-
-
-@interface JDNetworkResponseChain ()
-
-@end
-
-@implementation JDNetworkResponseChain {
-    JDNetworkResponseInterceptorCenter *_interceptorCenter;
-}
-
-
-- (JDNetworkResponseInterceptorCenter *)interceptorCenter {
-    if (_interceptorCenter == nil) {
-        _interceptorCenter = [[JDNetworkResponseInterceptorCenter alloc] init];
-    }
-    return _interceptorCenter;
-}
-
-- (void)restart {
-    [self.interceptorCenter restart];
-}
-
-- (void)stop {
-    [self.interceptorCenter stop];
-}
-
-- (void)resume {
-    [self.interceptorCenter resume];
-}
-
-- (void)pause {
-    [self.interceptorCenter pause];
-}
-
-- (void)dealloc {
-    //    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+- (void)complete:(void(^)(BOOL complete, id object))completeBlock {
+    [_interceptorCenter complete:^(BOOL complete, id  _Nonnull object) {
+        completeBlock(complete,object);
+    }];
 }
 
 @end

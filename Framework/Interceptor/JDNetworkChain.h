@@ -1,5 +1,5 @@
 //
-//  JDNetworkRequestChain.h
+//  JDNetworkChain.h
 //  JDNetwork
 //
 //  Created by JD on 2015/8/7.
@@ -11,32 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class JDNetworkRequestInterceptorCenter;
+@class JDNetworkInterceptorCenter;
 
-@interface JDNetworkRequestChain : NSObject
+@interface JDNetworkChain<T> : NSObject {
+    JDNetworkInterceptorCenter *_interceptorCenter;
+}
 
-@property (nonatomic, strong, readonly) JDNetworkRequestInterceptorCenter *interceptorCenter;
+@property (nonatomic, strong) T object;
 
-@property (nonatomic, strong) JDNetworkEntity *entity;
++ (instancetype)requestChain;
 
-- (void)restart;
-
-- (void)stop;
-
-- (void)resume;
-
-- (void)pause;
-
-
-@end
-
-@class JDNetworkResponseInterceptorCenter;
-
-@interface JDNetworkResponseChain : NSObject
-
-@property (nonatomic, strong, readonly) JDNetworkResponseInterceptorCenter *interceptorCenter;
-
-@property (nonatomic, strong) JDResponse *response;
++ (instancetype)responseChain;
 
 - (void)restart;
 
@@ -46,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)pause;
 
+- (void)complete:(void(^)(BOOL complete, T object))completeBlock;
 
 @end
 

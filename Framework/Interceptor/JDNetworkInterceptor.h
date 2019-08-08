@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class JDNetworkRequestChain;
-@class JDNetworkResponseChain;
+@class JDNetworkChain;
+@class JDNetworkChain;
 @class JDResponse;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -30,14 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param chain 拦截链
  */
-- (void)request:(JDNetworkRequestChain *)chain;
+- (void)request:(JDNetworkChain *)chain;
 
 /**
  拦截响应
 
  @param chain 拦截链
  */
-- (void)response:(JDNetworkResponseChain *)chain;
+- (void)response:(JDNetworkChain *)chain;
 
 @end
 

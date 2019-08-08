@@ -11,8 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetworkRequestInterceptorCenter : NSObject
+@interface JDNetworkInterceptorCenter : NSObject
 
+@property (nonatomic, assign) SEL selector;
 /**
  添加拦截器
  
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addFinallyInterceptors:(id<JDNetworkInterceptor>)interceptors;
 
-- (void)run:(JDNetworkRequestChain *)chain;
+- (void)run:(JDNetworkChain *)chain;
 
 - (void)restart;
 
@@ -32,34 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)resume;
 
-- (void)complete:(void(^)(BOOL complete, JDNetworkEntity *entity))completeBlock;
-
-
-@end
-
-
-@interface JDNetworkResponseInterceptorCenter : NSObject
-
-/**
- 添加拦截器
- 
- @param interceptors 拦截器
- */
-- (void)addInterceptors:(NSArray<id<JDNetworkInterceptor>> *)interceptors;
-
-- (void)addFinallyInterceptors:(id<JDNetworkInterceptor>)interceptors;
-
-- (void)run:(JDNetworkResponseChain *)chain;
-
-- (void)restart;
-
-- (void)stop;
-
-- (void)pause;
-
-- (void)resume;
-
-- (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock;
+- (void)complete:(void(^)(BOOL complete, id object))completeBlock;
 
 
 @end

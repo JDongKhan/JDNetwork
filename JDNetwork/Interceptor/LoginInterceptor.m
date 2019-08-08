@@ -16,7 +16,7 @@
     return 999;
 }
 
-- (void)request:(JDNetworkRequestChain *)chain {
+- (void)request:(JDNetworkChain *)chain {
     //如果没有登录则拦截掉
     if (![LoginManager isLogin]) {
         //去登陆
@@ -27,7 +27,7 @@
         [chain stop];
         return;
     }
-    JDNetworkEntity *entity = chain.entity;
+    JDNetworkEntity *entity = (JDNetworkEntity *)chain.object;
     JDRequest *request = entity.request;
     [request addParameter:@"1" forKey:@"userID"];
 }

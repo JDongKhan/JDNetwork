@@ -15,13 +15,15 @@
     return -2;
 }
 
-- (void)request:(JDNetworkRequestChain *)chain {
-    NSLog(@"request : %@",chain.entity.request.fullURLString);
-    NSLog(@"parameters : %@",chain.entity.request.parameters);
+- (void)request:(JDNetworkChain *)chain {
+    JDNetworkEntity *entity = (JDNetworkEntity *)chain.object;
+    NSLog(@"request : %@",entity.request.fullURLString);
+    NSLog(@"parameters : %@",entity.request.parameters);
 }
 
-- (void)response:(JDNetworkResponseChain *)chain  {
-    NSLog(@"response : %@",chain.response.responseObject);
+- (void)response:(JDNetworkChain *)chain  {
+    JDResponse *response = (JDResponse *)chain.object;
+    NSLog(@"response : %@",response.responseObject);
 }
 
 @end

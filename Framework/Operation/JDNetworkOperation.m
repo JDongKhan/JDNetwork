@@ -12,6 +12,7 @@
 #import "JDNetworkCache.h"
 #import "JDNetworkInterceptor.h"
 #import "JDNetworkInterceptorCenter.h"
+#import "JDNetworkChain+Private.h"
 
 @interface JDNetworkOperation()
 
@@ -26,17 +27,18 @@
 - (void)start {
     //拦截处理request
     JDNetworkEntity *entity = self.entity;
-    JDNetworkRequestChain *chain = [[JDNetworkRequestChain alloc] init];
-    chain.entity = entity;
+    JDNetworkChain<JDNetworkEntity *> *chain = [[JDNetworkChain alloc] init];
+    chain.object = entity;
     
-    [chain.interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
-    [chain.interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-    [chain.interceptorCenter complete:^(BOOL complete,JDNetworkEntity *e) {
+    [chain addInterceptors:[entity sortInterceptorsArrayByPriority]];
+    [chain addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+    [chain complete:^(BOOL complete,JDNetworkEntity *e) {
         if (complete) {
             [self request:e];
         }
     }];
-    [chain.interceptorCenter run:chain];
+    
+    [chain run:chain];
 }
 
 - (void)request:(JDNetworkEntity *)entity  {
@@ -55,16 +57,16 @@
         resultResponse.source = JDResponseNetworkSource;
 
         //响应链
-        JDNetworkResponseChain *chain = [[JDNetworkResponseChain alloc] init];
-        chain.response = resultResponse;
-        [chain.interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
-        [chain.interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-        [chain.interceptorCenter complete:^(BOOL complete, JDResponse *response) {
+        JDNetworkChain<JDResponse *> *chain = [[JDNetworkChain alloc] init];
+        chain.object = resultResponse;
+        [chain addInterceptors:[entity sortInterceptorsArrayByPriority]];
+        [chain addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+        [chain complete:^(BOOL complete, JDResponse *response) {
             if (complete) {
                 [entity.response reportResponse:response];
             }
         }];
-        [chain.interceptorCenter run:chain];
+        [chain run:chain];
         
         self.task_running = NO;
     };

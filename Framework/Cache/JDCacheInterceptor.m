@@ -23,8 +23,8 @@
     return -1;
 }
 
-- (void)request:(JDNetworkRequestChain *)chain {
-    JDNetworkEntity *entity = chain.entity;
+- (void)request:(JDNetworkChain *)chain {
+    JDNetworkEntity *entity = chain.object;
     JDRequest *request = entity.request;
      _shouldCache = request.shouldCache;
     //加载缓存
@@ -44,8 +44,8 @@
     }
 }
 
-- (void)response:(JDNetworkResponseChain *)chain {
-    JDResponse *response = chain.response;
+- (void)response:(JDNetworkChain *)chain {
+    JDResponse *response = chain.object;
     if (response.error == nil && _shouldCache) {
         [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
     }

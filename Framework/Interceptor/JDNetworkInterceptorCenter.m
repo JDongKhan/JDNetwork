@@ -7,13 +7,13 @@
 
 #import "JDNetworkInterceptorCenter.h"
 
-@implementation JDNetworkRequestInterceptorCenter {
+@implementation JDNetworkInterceptorCenter {
     NSMutableArray<id<JDNetworkInterceptor>> *_interceptors;
     NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
     NSInteger _currentIndex;
     NSInteger _lastIndex;
-    JDNetworkRequestChain *_chain;
-    void(^_completeBlock)(BOOL complete,JDNetworkEntity *entity);
+    JDNetworkChain *_chain;
+    void(^_completeBlock)(BOOL complete,NSObject *object);
     BOOL _stop;
 }
 
@@ -34,7 +34,7 @@
     [_finallyInterceptors addObjectsFromArray:interceptors];
 }
 
-- (void)run:(JDNetworkRequestChain *)chain {
+- (void)run:(JDNetworkChain *)chain {
     _chain = chain;
     _stop = NO;
     _currentIndex = 0;
@@ -49,19 +49,22 @@
     
     //执行finally 拦截器
     [_finallyInterceptors enumerateObjectsUsingBlock:^(id<JDNetworkInterceptor>  _Nonnull interceptor, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([interceptor respondsToSelector:@selector(request:)]) {
-            [interceptor request:self->_chain];
+        if (self.selector != nil && [interceptor respondsToSelector:self.selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [interceptor performSelector:self.selector withObject:self->_chain];
+#pragma clang diagnostic pop
         }
     }];
     
     //完成
     if (_stop) {
         if (_completeBlock) {
-            _completeBlock(NO,_chain.entity);
+            _completeBlock(NO,_chain.object);
         }
     } else {
         if (_completeBlock) {
-            _completeBlock(YES,_chain.entity);
+            _completeBlock(YES,_chain.object);
         }
     }
 }
@@ -94,120 +97,20 @@
 - (void)next {
     if (_currentIndex < _interceptors.count) {
         id<JDNetworkInterceptor> interceptor = [_interceptors objectAtIndex:_currentIndex];
-        if ([interceptor respondsToSelector:@selector(request:)]) {
-            [interceptor request:_chain];
+        if (self.selector != nil && [interceptor respondsToSelector:self.selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [interceptor performSelector:self.selector withObject:_chain];
+#pragma clang diagnostic pop
         }
     }
      _currentIndex ++;
 }
 
 
-- (void)complete:(void(^)(BOOL complete,JDNetworkEntity *entity))completeBlock {
+- (void)complete:(void(^)(BOOL complete,id object))completeBlock {
     _completeBlock = [completeBlock copy];
 }
 
 @end
 
-
-#pragma mark ------------   response  --------------
-
-@implementation JDNetworkResponseInterceptorCenter {
-    NSMutableArray<id<JDNetworkInterceptor>> *_interceptors;
-    NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
-    NSInteger _currentIndex;
-    NSInteger _lastIndex;
-    JDNetworkResponseChain *_chain;
-    void(^_completeBlock)(BOOL complete,JDResponse *response);
-    BOOL _stop;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _interceptors = [NSMutableArray arrayWithCapacity:0];
-        _finallyInterceptors = [NSMutableArray arrayWithCapacity:0];
-    }
-    return self;
-}
-
-- (void)addInterceptors:(NSArray<id<JDNetworkInterceptor>> *)interceptors {
-    [_interceptors addObjectsFromArray:interceptors];
-}
-
-- (void)addFinallyInterceptors:(NSArray<id<JDNetworkInterceptor>> *)interceptors {
-    [_finallyInterceptors addObjectsFromArray:interceptors];
-}
-
-- (void)run:(JDNetworkResponseChain *)chain {
-    _chain = chain;
-    _currentIndex = 0;
-    _stop = NO;
-    [self run];
-}
-
-- (void)run {
-    
-    while (!_stop && [self hasNext]) {
-        [self next];
-    }
-    
-    //执行finally 拦截器
-    [_finallyInterceptors enumerateObjectsUsingBlock:^(id<JDNetworkInterceptor>  _Nonnull interceptor, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([interceptor respondsToSelector:@selector(response:)]) {
-            [interceptor response:self->_chain];
-        }
-    }];
-    
-    //完成
-    if (_stop) {
-        if (_completeBlock) {
-            _completeBlock(NO,_chain.response);
-        }
-    } else {
-        if (_completeBlock) {
-            _completeBlock(YES,_chain.response);
-        }
-    }
-}
-
-- (void)restart {
-    _currentIndex = 0;
-    _stop = NO;
-    [self run];
-}
-
-- (void)stop {
-    _stop = YES;
-}
-
-- (void)resume {
-    _stop = NO;
-    _currentIndex = _lastIndex;
-    [self run];
-}
-
-- (void)pause {
-    _stop = YES;
-    _lastIndex = _currentIndex;
-}
-
-- (BOOL)hasNext {
-    return (_currentIndex < _interceptors.count);
-}
-
-- (void)next {
-    if (_currentIndex < _interceptors.count) {
-        id<JDNetworkInterceptor> interceptor = [_interceptors objectAtIndex:_currentIndex];
-        if ([interceptor respondsToSelector:@selector(response:)]) {
-            [interceptor response:_chain];
-        }
-    }
-    _currentIndex ++;
-}
-
-
-- (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock {
-    _completeBlock = [completeBlock copy];
-}
-
-@end
