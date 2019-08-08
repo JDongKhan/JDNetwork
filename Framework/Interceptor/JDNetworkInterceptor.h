@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+/**
+ 优先级
+ 
+ 值越大越先执行
+ */
 - (NSInteger)priority;
 
 - (void)disposeOfResponse:(JDResponse *)response;

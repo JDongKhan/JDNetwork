@@ -18,131 +18,144 @@
 
 + (JDNetwork *(^)(NSString *))GET {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"GET";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))POST {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"POST";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))HEAD {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"HEAD";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))PUT {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"PUT";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))DELETE {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"DELETE";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))PATCH {
     return ^(NSString *fullURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.pathOrFullURLString = fullURLString;
         entity.request.HTTPMethod = @"PATCH";
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 + (JDNetwork *(^)(NSString *))baseURLString {
     return ^(NSString *baseURLString){
-        JDNetwork *requst = [[self alloc] init];
+        JDNetwork *network = [[self alloc] init];
         JDNetworkEntity *entity = [[JDNetworkEntity alloc] init];
         entity.request.baseURLString = baseURLString;
-        requst->entity = entity;
-        return requst;
+        network->entity = entity;
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))GET {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"GET";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"GET";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))POST {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"POST";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"POST";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))HEAD {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"HEAD";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"HEAD";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))PUT {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"PUT";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"PUT";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))DELETE {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"DELETE";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"DELETE";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(NSString *))PATCH {
     return ^(NSString *pathOrFullURLString){
-        self->entity.request.pathOrFullURLString = pathOrFullURLString;
-        self->entity.request.HTTPMethod = @"PATCH";
-        return self;
+        JDNetwork *network = [self copy];
+        network->entity.request.pathOrFullURLString = pathOrFullURLString;
+        network->entity.request.HTTPMethod = @"PATCH";
+        return network;
     };
 }
 
 - (JDNetwork *(^)(id<JDNetworkInterceptor>))addInterceptor {
     return ^(id<JDNetworkInterceptor> interceptor){
         [self->entity addInterceptor:interceptor];
+        return self;
+    };
+}
+
+- (JDNetwork *(^)(id<JDNetworkInterceptor>))addFinallyInterceptor {
+    return ^(id<JDNetworkInterceptor> interceptor){
+        [self->entity addFinallyInterceptor:interceptor];
         return self;
     };
 }
@@ -230,8 +243,15 @@
     self.operation = operation;
 }
 
+
+- (id)copyWithZone:(NSZone *)zone {
+    JDNetwork *network = [[[self class] allocWithZone:zone] init];
+    network->entity = [self->entity copy];
+    return network;
+}
+
 - (void)dealloc {
-    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+//    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 @end

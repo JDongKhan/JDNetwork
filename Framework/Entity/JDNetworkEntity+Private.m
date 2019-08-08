@@ -7,6 +7,8 @@
 //
 
 #import "JDNetworkEntity+Private.h"
+#import "JDNetworkInterceptor.h"
+#import <objc/runtime.h>
 
 @implementation JDRequest (Private)
 
@@ -24,12 +26,9 @@
     }
 }
 
-- (NSURLRequest *)convertToNSURLRequest:(NSError **)error {
+- (NSURLRequest *)convertToURLRequest:(NSError **)error {
     NSMutableURLRequest *request = nil;
     NSError *serializationError = nil;
-    
-    NSString *fullURLString = [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
-    
     if (self.usedMultipartFormData) {
         //TODO下面的方法没有测试，待完善
         //有文件
@@ -44,7 +43,7 @@
                 _files[key] = value;
             }
         }
-        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:self.fullURLString parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             for (NSString *key in _files) {
                 id value = _files[key];
                 [formData
@@ -60,7 +59,7 @@
         }
         
     } else {
-        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:fullURLString parameters:self.parameters error:&serializationError];
+        request = [self.requestSerializer requestWithMethod:self.HTTPMethod URLString:self.fullURLString parameters:self.parameters error:&serializationError];
         if (serializationError != nil) {
             *error = serializationError;
             return nil;
@@ -76,13 +75,13 @@
 
 - (AFHTTPResponseSerializer<AFURLResponseSerialization> *)responseSerializer {
     switch (self.responseEncoding) {
-            case JDNetworkResponseJSONEncoding:
+        case JDNetworkResponseJSONEncoding:
             return [AFJSONResponseSerializer serializer];
-            case JDNetworkResponseXMLParserEncoding:
+        case JDNetworkResponseXMLParserEncoding:
             return [AFXMLParserResponseSerializer serializer];
-            case JDNetworkResponsePropertyListEncoding:
+        case JDNetworkResponsePropertyListEncoding:
             return [AFPropertyListResponseSerializer serializer];
-            case JDNetworkResponseImageEncoding:
+        case JDNetworkResponseImageEncoding:
             return [AFImageResponseSerializer serializer];
         default:
             return [AFHTTPResponseSerializer serializer];
@@ -111,16 +110,52 @@
     return sessionManager;
 }
 
+
+- (NSArray *)sortInterceptorsArrayByPriority {
+    NSArray *newArray = objc_getAssociatedObject(self, _cmd);
+    if (newArray == nil) {
+        newArray =  [self.interceptors sortedArrayUsingComparator:^NSComparisonResult(id<JDNetworkInterceptor>  _Nonnull module1, id<JDNetworkInterceptor>  _Nonnull module2) {
+            NSInteger priority1 = 0;
+            if ([module1 respondsToSelector:@selector(priority)]) {
+                priority1 = module1.priority;
+            }
+            NSInteger priority2 = 0;
+            if ([module2 respondsToSelector:@selector(priority)]) {
+                priority2 = module2.priority;
+            }
+            return priority1 < priority2;
+        }];
+        objc_setAssociatedObject(self,_cmd,newArray, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    }
+    return newArray;
+}
+
+- (NSArray *)sortFinallyInterceptorsArrayByPriority {
+    NSArray *newArray = objc_getAssociatedObject(self, _cmd);
+    if (newArray == nil) {
+        newArray =  [self.finallyInterceptors sortedArrayUsingComparator:^NSComparisonResult(id<JDNetworkInterceptor>  _Nonnull module1, id<JDNetworkInterceptor>  _Nonnull module2) {
+            NSInteger priority1 = 0;
+            if ([module1 respondsToSelector:@selector(priority)]) {
+                priority1 = module1.priority;
+            }
+            NSInteger priority2 = 0;
+            if ([module2 respondsToSelector:@selector(priority)]) {
+                priority2 = module2.priority;
+            }
+            return priority1 < priority2;
+        }];
+        objc_setAssociatedObject(self,_cmd,newArray, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    }
+    return newArray;
+}
+
+
 - (void)reportResponse:(JDResponse *)response {
     if (response.error != nil) {
         [self reportError:response.error];
         return;
     }
     [self reportSuccess:response.responseObject];
-//    if (originalRequest.shouldCache) {
-//        [JDNetworkCache saveResponseToCacheFile:responseObject andURL:originalRequest.keyForCaching];
-//    }
-    
 }
 
 - (void)reportSuccess:(id)responseObject {

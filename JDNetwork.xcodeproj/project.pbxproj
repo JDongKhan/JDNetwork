@@ -119,10 +119,10 @@
 		69A1287922FACCCB001559A2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				69A1287D22FACCCB001559A2 /* LoginManager.h */,
 				69A1287A22FACCCB001559A2 /* LoginManager.m */,
 				69A1287B22FACCCB001559A2 /* JDNetworkManager.h */,
 				69A1287C22FACCCB001559A2 /* JDNetworkManager.m */,
-				69A1287D22FACCCB001559A2 /* LoginManager.h */,
 			);
 			path = Manager;
 			sourceTree = "<group>";

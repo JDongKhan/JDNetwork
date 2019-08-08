@@ -17,43 +17,59 @@ typedef NS_ENUM(NSInteger, JDNetworkParameterEncoding) {
     JDNetworkParameterPropertyListEncoding,
 };
 
-@interface JDRequest : NSObject
+@interface JDRequest : NSObject<NSCopying>
 
 /**
- base url
+ base url,such as http://xxx/xxx/xx.do
  */
 @property (nonatomic, copy) NSString *baseURLString;
 
 /**
- 请求的url
+ request path， such as /xx/xx.do?xx=xx or http://xxx/xxx/xx.do?xx=xxx
  */
 @property (nonatomic, copy) NSString *pathOrFullURLString;
 
 /**
- 请求的参数
+    baseURLString + pathOrFullURLString
+    or
+    pathOrFullURLString
+ */
+@property (nonatomic, copy, readonly) NSString *fullURLString;
+
+/**
+ parameters
  */
 @property (nonatomic, strong) NSDictionary<NSString*, id> *parameters;
 
 /**
- 参数类型
+ parameter type :
+     JDNetworkParameterHTTPEncoding
+     JDNetworkParameterJSONEncoding
+     JDNetworkParameterPropertyListEncoding
  */
 @property (nonatomic, assign) JDNetworkParameterEncoding parameterEncoding;
 
 /**
- 文件上传
+ file upload
  */
 @property (nonatomic, assign) BOOL usedMultipartFormData;
 
 /**
- 请求方式 GET、POST、DELETE、PUT
+ request method: GET、POST、DELETE、PUT
  */
 @property (nonatomic, copy) NSString *HTTPMethod;
 
 /**
- 超时
+ timeout
  */
 @property (nonatomic, assign) CGFloat timeoutInterval;
 
+/**
+ add parameter for key
+
+ @param parameter parameter
+ @param key key
+ */
 - (void)addParameter:(id)parameter forKey:(NSString *)key;
 
 @end

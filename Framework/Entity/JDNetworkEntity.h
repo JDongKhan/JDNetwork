@@ -19,7 +19,7 @@ typedef void (^JDNetworkCompletionBlock)(id _Nullable result);
 
 typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
 
-@interface JDNetworkEntity : NSObject
+@interface JDNetworkEntity : NSObject<NSCopying>
 
 /**
  request
@@ -35,6 +35,11 @@ typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
  拦截器
  */
 @property (nonatomic, strong, readonly) NSArray<id<JDNetworkInterceptor>> *interceptors;
+
+/**
+ 不会被拦截，一定会执行的拦截器
+ */
+@property (nonatomic, strong, readonly) NSArray<id<JDNetworkInterceptor>> *finallyInterceptors;
 
 /**
  请求成功block
@@ -53,6 +58,13 @@ typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
  @param interceptor 拦截器
  */
 - (void)addInterceptor:(id<JDNetworkInterceptor>)interceptor;
+
+/**
+ 添加拦截器
+
+ @param interceptor 拦截器
+ */
+- (void)addFinallyInterceptor:(id<JDNetworkInterceptor>)interceptor;
 
 @end
 

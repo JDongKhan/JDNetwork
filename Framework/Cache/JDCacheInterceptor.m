@@ -29,10 +29,13 @@
     //加载缓存
     if (_shouldCache) {
         _keyForCaching = request.keyForCaching;
-        id response = [JDNetworkCache cacheWithURL:_keyForCaching];
+        JDResponse *response = [JDNetworkCache cacheWithURL:_keyForCaching];
         if (response) {
-            [entity reportCacheData:response];
+            response.source = JDResponseCacheSource;
+            entity.response = response;
+            [entity reportCacheData:response.responseObject];
         }
+        //判断是否继续请求
         if (![request shouldContinueRequestAfterLoaded]) {
             return YES;
         }

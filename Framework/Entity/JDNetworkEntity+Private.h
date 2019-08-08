@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
-- (NSURLRequest *)convertToNSURLRequest:(NSError **)error;
+- (NSURLRequest *)convertToURLRequest:(NSError **)error;
 
 @end
 
@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JDNetworkEntity (Private)
 
 @property (nonatomic, strong, readonly) AFHTTPSessionManager *sessionManager;
+
+@property (nonatomic, strong, readonly) NSArray *sortInterceptorsArrayByPriority;
+
+@property (nonatomic, strong, readonly) NSArray *sortFinallyInterceptorsArrayByPriority;
 
 - (void)reportResponse:(JDResponse *)response;
 

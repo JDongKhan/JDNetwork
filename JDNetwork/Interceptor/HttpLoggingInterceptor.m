@@ -10,8 +10,13 @@
 
 @implementation HttpLoggingInterceptor
 
+- (NSInteger)priority {
+    return -2;
+}
+
 - (BOOL)intercept:(JDNetworkChain *)chain {
-    NSLog(@"request : %@",chain.entity.request.pathOrFullURLString);
+    NSLog(@"request : %@",chain.entity.request.fullURLString);
+    NSLog(@"parameters : %@",chain.entity.request.parameters);
     return NO;
 }
 

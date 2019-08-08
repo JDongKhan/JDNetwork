@@ -28,20 +28,30 @@
     JDNetworkChain *chain = [[JDNetworkChain alloc] initWithOperation:self];
     chain.entity = entity;
     
+    //common interceptor
     BOOL intercept = NO;
-    NSArray *sortInterceptors = [self sortArrayBypriority:entity.interceptors];
+    NSArray *sortInterceptors = [entity sortInterceptorsArrayByPriority];
     for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
         if ((intercept = [interceptor intercept:chain])) {
             break;
         }
     }
+    
+    //finally interceptor
+    NSArray *sortFinallyInterceptors = [entity sortFinallyInterceptorsArrayByPriority];
+    for (id<JDNetworkInterceptor> interceptor in sortFinallyInterceptors) {
+        if ((intercept = [interceptor intercept:chain])) {
+            break;
+        }
+    }
+    
     if (intercept) {
         return;
     }
     
     NSError *error = nil;
     JDRequest *resultRequest = chain.entity.request;
-    NSURLRequest *request = [resultRequest convertToNSURLRequest:&error];
+    NSURLRequest *request = [resultRequest convertToURLRequest:&error];
     
     if (self.task_running) {
         return;
@@ -52,11 +62,22 @@
         resultResponse.response = response;
         resultResponse.responseObject = responseObject;
         resultResponse.error = error;
+        resultResponse.source = JDResponseNetworkSource;
+        
+        //common interceptor
         for (id<JDNetworkInterceptor> interceptor in sortInterceptors) {
             if ([interceptor respondsToSelector:@selector(disposeOfResponse:)]) {
                 [interceptor disposeOfResponse:resultResponse];
             }
         }
+        
+        //finally interceptor
+        for (id<JDNetworkInterceptor> interceptor in sortFinallyInterceptors) {
+            if ([interceptor respondsToSelector:@selector(disposeOfResponse:)]) {
+                [interceptor disposeOfResponse:resultResponse];
+            }
+        }
+    
         [entity reportResponse:resultResponse];
         
         self.task_running = NO;
@@ -136,23 +157,8 @@
     [self.task cancel];
 }
 
-- (NSArray *)sortArrayBypriority:(NSArray *)array {
-    NSArray *newArray =  [array sortedArrayUsingComparator:^NSComparisonResult(id<JDNetworkInterceptor>  _Nonnull module1, id<JDNetworkInterceptor>  _Nonnull module2) {
-        NSInteger priority1 = 0;
-        if ([module1 respondsToSelector:@selector(priority)]) {
-            priority1 = module1.priority;
-        }
-        NSInteger priority2 = 0;
-        if ([module2 respondsToSelector:@selector(priority)]) {
-            priority2 = module2.priority;
-        }
-        return priority1 < priority2;
-    }];
-    return newArray;
-}
-
 - (void)dealloc {
-    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+//    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 @end

@@ -12,12 +12,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetwork : NSObject {
+@interface JDNetwork : NSObject<NSCopying> {
     __strong JDNetworkEntity *entity;
 }
 
 /**
- 请求是否正在运行
+check if it is running
  */
 @property (nonatomic, readonly, assign) BOOL running;
 
@@ -87,9 +87,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) JDNetwork *(^PATCH)(NSString *pathOrFullURLString);
 
 /**
- 拦截器
+ 添加拦截器
  */
 @property (nonatomic, readonly) JDNetwork *(^addInterceptor)(id<JDNetworkInterceptor> interceptor);
+
+/**
+ 不会被拦截，一定会执行的拦截器
+ */
+@property (nonatomic, readonly) JDNetwork *(^addFinallyInterceptor)(id<JDNetworkInterceptor> finallyInterceptor);
 
 /**
  设置请求参数

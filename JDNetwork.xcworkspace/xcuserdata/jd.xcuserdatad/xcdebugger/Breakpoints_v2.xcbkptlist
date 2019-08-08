@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JDNetwork/ViewController.m"
-            timestampString = "586919263.925671"
+            timestampString = "586927058.961409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Framework/Cache/JDCacheInterceptor.m"
-            timestampString = "586919263.926049"
+            filePath = "Framework/Operation/JDNetworkOperation.m"
+            timestampString = "586927058.96149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-disposeOfResponse:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-start"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
