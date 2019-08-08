@@ -13,7 +13,17 @@
 
 @end
 
-@implementation JDNetworkRequestChain
+@implementation JDNetworkRequestChain {
+    JDNetworkRequestInterceptorCenter *_interceptorCenter;
+}
+
+
+- (JDNetworkRequestInterceptorCenter *)interceptorCenter {
+    if (_interceptorCenter == nil) {
+        _interceptorCenter = [[JDNetworkRequestInterceptorCenter alloc] init];
+    }
+    return _interceptorCenter;
+}
 
 - (void)restart {
     [self.interceptorCenter restart];
@@ -34,7 +44,17 @@
 
 @end
 
-@implementation JDNetworkResponseChain
+@implementation JDNetworkResponseChain {
+    JDNetworkResponseInterceptorCenter *_interceptorCenter;
+}
+
+
+- (JDNetworkResponseInterceptorCenter *)interceptorCenter {
+    if (_interceptorCenter == nil) {
+        _interceptorCenter = [[JDNetworkResponseInterceptorCenter alloc] init];
+    }
+    return _interceptorCenter;
+}
 
 - (void)restart {
     [self.interceptorCenter restart];

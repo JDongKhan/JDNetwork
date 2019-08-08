@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JDNetworkRequestChain : NSObject
 
-@property (nonatomic, strong) JDNetworkRequestInterceptorCenter *interceptorCenter;
+@property (nonatomic, strong, readonly) JDNetworkRequestInterceptorCenter *interceptorCenter;
 
 @property (nonatomic, strong) JDNetworkEntity *entity;
 
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JDNetworkResponseChain : NSObject
 
-@property (nonatomic, strong) JDNetworkResponseInterceptorCenter *interceptorCenter;
+@property (nonatomic, strong, readonly) JDNetworkResponseInterceptorCenter *interceptorCenter;
 
 @property (nonatomic, strong) JDResponse *response;
 

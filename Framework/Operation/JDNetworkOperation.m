@@ -29,17 +29,14 @@
     JDNetworkRequestChain *chain = [[JDNetworkRequestChain alloc] init];
     chain.entity = entity;
     
-    JDNetworkRequestInterceptorCenter *interceptorCenter = [[JDNetworkRequestInterceptorCenter alloc] init];
-    chain.interceptorCenter = interceptorCenter;
-
-    [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
-    [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-    [interceptorCenter complete:^(BOOL complete,JDNetworkEntity *e) {
+    [chain.interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
+    [chain.interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+    [chain.interceptorCenter complete:^(BOOL complete,JDNetworkEntity *e) {
         if (complete) {
             [self request:e];
         }
     }];
-    [interceptorCenter run:chain];
+    [chain.interceptorCenter run:chain];
 }
 
 - (void)request:(JDNetworkEntity *)entity  {
@@ -60,18 +57,14 @@
         //响应链
         JDNetworkResponseChain *chain = [[JDNetworkResponseChain alloc] init];
         chain.response = resultResponse;
-        
-        JDNetworkResponseInterceptorCenter *interceptorCenter = [[JDNetworkResponseInterceptorCenter alloc] init];
-        chain.interceptorCenter = interceptorCenter;
-
-        [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
-            [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-        [interceptorCenter complete:^(BOOL complete, JDResponse *response) {
+        [chain.interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
+        [chain.interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
+        [chain.interceptorCenter complete:^(BOOL complete, JDResponse *response) {
             if (complete) {
                 [entity.response reportResponse:response];
             }
         }];
-        [interceptorCenter run:chain];
+        [chain.interceptorCenter run:chain];
         
         self.task_running = NO;
     };

@@ -217,16 +217,14 @@
 }
 
 - (void(^)(void))start {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(void){
-        [_weaskSelf _start];
+        [self _start];
     };
 }
 
 - (void (^)(void))cancel {
-    __weak JDNetwork *_weaskSelf = self;
     return ^(void) {
-        [_weaskSelf.operation cancel];
+        [self.operation cancel];
     };
 }
 
