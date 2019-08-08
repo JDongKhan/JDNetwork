@@ -11,6 +11,7 @@
     NSMutableArray<id<JDNetworkInterceptor>> *_interceptors;
     NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
     NSInteger _currentIndex;
+    NSInteger _lastIndex;
     JDNetworkRequestChain *_chain;
     void(^_completeBlock)(BOOL complete,JDNetworkEntity *entity);
     BOOL _stop;
@@ -35,12 +36,13 @@
 
 - (void)run:(JDNetworkRequestChain *)chain {
     _chain = chain;
+    _stop = NO;
+    _currentIndex = 0;
     [self run];
 }
 
 - (void)run {
-    _currentIndex = 0;
-    _stop = NO;
+    
     while (!_stop && [self hasNext]) {
         [self next];
     }
@@ -69,7 +71,24 @@
 }
 
 - (void)restart {
+    _stop = NO;
+    _currentIndex = 0;
     [self run];
+}
+
+- (void)stop {
+    _stop = YES;
+}
+
+- (void)resume {
+    _stop = NO;
+    _currentIndex = _lastIndex;
+    [self run];
+}
+
+- (void)pause {
+    _stop = YES;
+    _lastIndex = _currentIndex;
 }
 
 - (void)next {
@@ -82,9 +101,6 @@
      _currentIndex ++;
 }
 
-- (void)stop {
-    _stop = YES;
-}
 
 - (void)complete:(void(^)(BOOL complete,JDNetworkEntity *entity))completeBlock {
     _completeBlock = [completeBlock copy];
@@ -93,12 +109,13 @@
 @end
 
 
-/********************   response ***************************/
+#pragma mark ------------   response  --------------
 
 @implementation JDNetworkResponseInterceptorCenter {
     NSMutableArray<id<JDNetworkInterceptor>> *_interceptors;
     NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
     NSInteger _currentIndex;
+    NSInteger _lastIndex;
     JDNetworkResponseChain *_chain;
     void(^_completeBlock)(BOOL complete,JDResponse *response);
     BOOL _stop;
@@ -123,12 +140,13 @@
 
 - (void)run:(JDNetworkResponseChain *)chain {
     _chain = chain;
+    _currentIndex = 0;
+    _stop = NO;
     [self run];
 }
 
 - (void)run {
-    _currentIndex = 0;
-    _stop = NO;
+    
     while (!_stop && [self hasNext]) {
         [self next];
     }
@@ -152,12 +170,29 @@
     }
 }
 
-- (BOOL)hasNext {
-    return (_currentIndex < _interceptors.count);
+- (void)restart {
+    _currentIndex = 0;
+    _stop = NO;
+    [self run];
 }
 
-- (void)restart {
+- (void)stop {
+    _stop = YES;
+}
+
+- (void)resume {
+    _stop = NO;
+    _currentIndex = _lastIndex;
     [self run];
+}
+
+- (void)pause {
+    _stop = YES;
+    _lastIndex = _currentIndex;
+}
+
+- (BOOL)hasNext {
+    return (_currentIndex < _interceptors.count);
 }
 
 - (void)next {
@@ -170,9 +205,6 @@
     _currentIndex ++;
 }
 
-- (void)stop {
-    _stop = YES;
-}
 
 - (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock {
     _completeBlock = [completeBlock copy];

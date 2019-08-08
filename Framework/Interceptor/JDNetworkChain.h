@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)stop;
 
+- (void)resume;
+
+- (void)pause;
+
+
 @end
 
 @class JDNetworkResponseInterceptorCenter;
@@ -36,6 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)restart;
 
 - (void)stop;
+
+- (void)resume;
+
+- (void)pause;
+
 
 @end
 

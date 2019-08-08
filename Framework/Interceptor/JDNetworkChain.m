@@ -33,6 +33,14 @@
     [self.interceptorCenter stop];
 }
 
+- (void)resume {
+    [self.interceptorCenter resume];
+}
+
+- (void)pause {
+    [self.interceptorCenter pause];
+}
+
 - (void)dealloc {
 //    NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
@@ -62,6 +70,14 @@
 
 - (void)stop {
     [self.interceptorCenter stop];
+}
+
+- (void)resume {
+    [self.interceptorCenter resume];
+}
+
+- (void)pause {
+    [self.interceptorCenter pause];
 }
 
 - (void)dealloc {

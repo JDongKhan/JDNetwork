@@ -24,11 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)run:(JDNetworkRequestChain *)chain;
 
-- (void)run;
-
 - (void)restart;
 
 - (void)stop;
+
+- (void)pause;
+
+- (void)resume;
 
 - (void)complete:(void(^)(BOOL complete, JDNetworkEntity *entity))completeBlock;
 
@@ -49,11 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)run:(JDNetworkResponseChain *)chain;
 
-- (void)run;
-
 - (void)restart;
 
 - (void)stop;
+
+- (void)pause;
+
+- (void)resume;
 
 - (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock;
 
