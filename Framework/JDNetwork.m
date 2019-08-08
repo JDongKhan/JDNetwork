@@ -204,14 +204,14 @@
 
 - (JDNetwork *(^)(JDNetworkCompletionBlock success))success {
     return ^(JDNetworkCompletionBlock success){
-        self->entity.success = success;
+        self->entity.response.successBlock = success;
         return self;
     };
 }
 
 - (JDNetwork *(^)(JDNetworkErrorBlock error))error {
     return ^(JDNetworkErrorBlock error){
-        self->entity.error = error;
+        self->entity.response.errorBlock = error;
         return self;
     };
 }

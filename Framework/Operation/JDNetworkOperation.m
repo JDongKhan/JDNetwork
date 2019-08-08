@@ -34,9 +34,9 @@
 
     [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
     [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-    [interceptorCenter complete:^(BOOL complete) {
+    [interceptorCenter complete:^(BOOL complete,JDNetworkEntity *e) {
         if (complete) {
-            [self request:entity];
+            [self request:e];
         }
     }];
     [interceptorCenter run:chain];
@@ -66,9 +66,9 @@
 
         [interceptorCenter addInterceptors:[entity sortInterceptorsArrayByPriority]];
             [interceptorCenter addInterceptors:[entity sortFinallyInterceptorsArrayByPriority]];
-        [interceptorCenter complete:^(BOOL complete) {
+        [interceptorCenter complete:^(BOOL complete, JDResponse *response) {
             if (complete) {
-                [entity reportResponse:resultResponse];
+                [entity.response reportResponse:response];
             }
         }];
         [interceptorCenter run:chain];

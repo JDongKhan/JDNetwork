@@ -12,7 +12,7 @@
     NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
     NSInteger _currentIndex;
     JDNetworkRequestChain *_chain;
-    void(^_completeBlock)(BOOL complete);
+    void(^_completeBlock)(BOOL complete,JDNetworkEntity *entity);
     BOOL _stop;
 }
 
@@ -55,11 +55,11 @@
     //完成
     if (_stop) {
         if (_completeBlock) {
-            _completeBlock(NO);
+            _completeBlock(NO,_chain.entity);
         }
     } else {
         if (_completeBlock) {
-            _completeBlock(YES);
+            _completeBlock(YES,_chain.entity);
         }
     }
 }
@@ -86,7 +86,7 @@
     _stop = YES;
 }
 
-- (void)complete:(void(^)(BOOL complete))completeBlock {
+- (void)complete:(void(^)(BOOL complete,JDNetworkEntity *entity))completeBlock {
     _completeBlock = [completeBlock copy];
 }
 
@@ -100,7 +100,7 @@
     NSMutableArray<id<JDNetworkInterceptor>> *_finallyInterceptors;
     NSInteger _currentIndex;
     JDNetworkResponseChain *_chain;
-    void(^_completeBlock)(BOOL complete);
+    void(^_completeBlock)(BOOL complete,JDResponse *response);
     BOOL _stop;
 }
 
@@ -143,11 +143,11 @@
     //完成
     if (_stop) {
         if (_completeBlock) {
-            _completeBlock(NO);
+            _completeBlock(NO,_chain.response);
         }
     } else {
         if (_completeBlock) {
-            _completeBlock(YES);
+            _completeBlock(YES,_chain.response);
         }
     }
 }
@@ -174,7 +174,7 @@
     _stop = YES;
 }
 
-- (void)complete:(void(^)(BOOL complete))completeBlock {
+- (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock {
     _completeBlock = [completeBlock copy];
 }
 

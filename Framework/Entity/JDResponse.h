@@ -21,6 +21,10 @@ typedef NS_ENUM(NSInteger, JDNetworkResponseEncoding) {
 FOUNDATION_EXPORT NSString * const JDResponseNetworkSource;
 FOUNDATION_EXPORT NSString * const JDResponseCacheSource;
 
+typedef void (^JDNetworkCompletionBlock)(id _Nullable result);
+typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
+
+
 @interface JDResponse : NSObject<NSCoding, NSCopying>
 
 /**
@@ -47,6 +51,17 @@ FOUNDATION_EXPORT NSString * const JDResponseCacheSource;
  响应的类型
  */
 @property (nonatomic, assign) JDNetworkResponseEncoding responseEncoding;
+
+/**
+ 请求成功block
+ */
+@property (nonatomic, copy) JDNetworkCompletionBlock successBlock;
+
+/**
+ 请求失败block
+ */
+@property (nonatomic, copy) JDNetworkErrorBlock errorBlock;
+
 
 @end
 

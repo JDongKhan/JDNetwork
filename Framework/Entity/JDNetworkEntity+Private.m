@@ -88,6 +88,26 @@
     }
 }
 
+- (void)reportResponse:(JDResponse *)response {
+    if (response.error != nil) {
+        [self reportError:response.error];
+        return;
+    }
+    [self reportSuccess:response.responseObject];
+}
+
+- (void)reportSuccess:(id)responseObject {
+    if (self.successBlock != nil) {
+        self.successBlock(responseObject);
+    }
+}
+
+- (void)reportError:(NSError *)error {
+    if (self.errorBlock != nil) {
+        self.errorBlock(error);
+    }
+}
+
 
 @end
 
@@ -147,27 +167,6 @@
         objc_setAssociatedObject(self,_cmd,newArray, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return newArray;
-}
-
-
-- (void)reportResponse:(JDResponse *)response {
-    if (response.error != nil) {
-        [self reportError:response.error];
-        return;
-    }
-    [self reportSuccess:response.responseObject];
-}
-
-- (void)reportSuccess:(id)responseObject {
-    if (self.success != nil) {
-        self.success(responseObject);
-    }
-}
-
-- (void)reportError:(NSError *)error {
-    if (self.error != nil) {
-        self.error(error);
-    }
 }
 
 @end

@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
+- (void)reportResponse:(JDResponse *)response;
+
 @end
 
 @interface JDNetworkEntity (Private)
@@ -40,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSArray *sortFinallyInterceptorsArrayByPriority;
 
-- (void)reportResponse:(JDResponse *)response;
 
 @end
 

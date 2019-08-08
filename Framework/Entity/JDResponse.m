@@ -17,6 +17,8 @@ NSString *const JDResponseCacheSource = @"Cache";
     JDResponse *response = [[[self class] allocWithZone:zone] init];
     response.responseEncoding = self.responseEncoding;
     response.responseEncoding = self.responseEncoding;
+    response.successBlock = [self.successBlock copy];
+    response.errorBlock = [self.errorBlock copy];
     return response;
 }
 

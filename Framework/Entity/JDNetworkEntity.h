@@ -15,10 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDNetworkInterceptor;
 
-typedef void (^JDNetworkCompletionBlock)(id _Nullable result);
-
-typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
-
 @interface JDNetworkEntity : NSObject<NSCopying>
 
 /**
@@ -32,7 +28,7 @@ typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
 @property (nonatomic, strong) JDResponse *response;
 
 /**
- 拦截器
+ 拦截器,可以自行z终止和恢复请求
  */
 @property (nonatomic, strong, readonly) NSArray<id<JDNetworkInterceptor>> *interceptors;
 
@@ -40,17 +36,6 @@ typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
  不会被拦截，一定会执行的拦截器
  */
 @property (nonatomic, strong, readonly) NSArray<id<JDNetworkInterceptor>> *finallyInterceptors;
-
-/**
- 请求成功block
- */
-@property (nonatomic, copy) JDNetworkCompletionBlock success;
-
-/**
- 请求失败block
- */
-@property (nonatomic, copy) JDNetworkErrorBlock error;
-
 
 /**
  添加拦截器

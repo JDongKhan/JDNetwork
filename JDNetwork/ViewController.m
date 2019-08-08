@@ -49,23 +49,33 @@
     .addInterceptor([[LoginInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .success(^(id result) {
+        NSLog(@"success : %@",result);
     })
     .error(^(NSError *error) {
+        NSLog(@"error : %@",error);
     })
     .start();
 }
 
 //缓存拦截器
 - (IBAction)requestAction3:(id)sender {
-    JDNetwork
-    .GET(@"https://baidu.com")
+    NSString *url = @"/api/openapi/BaikeLemmaCardApi";
+    JDNetworkManager.baiduService
+    .GET(url)
+    .parametersForKey(@"scope", @"103")
+    .parametersForKey(@"format", @"json")
+    .parametersForKey(@"appid", @"379020")
+    .parametersForKey(@"bk_key", @"haha")
+    .parametersForKey(@"bk_length", @"600")
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
-    .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .success(^(id result) {
+        NSLog(@"success : %@",result);
     })
     .cache(^(id  result) {
+        NSLog(@"cache : %@",result);
     })
     .error(^(NSError *error) {
+        NSLog(@"error : %@",error);
     })
     .start();
 }
@@ -80,10 +90,13 @@
     .cachePolicy(JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest)
     .responseEncoding(JDNetworkResponseXMLParserEncoding)
     .success(^(id  result) {
+        NSLog(@"success : %@",result);
     })
     .cache(^(id  result) {
+        NSLog(@"cache : %@",result);
     })
     .error(^(NSError *error) {
+        NSLog(@"error : %@",error);
     })
     .start();
 }
@@ -100,10 +113,13 @@
     .parametersForKey(@"bk_length", @"600")
     .cachePolicy(JDNetworkCachePolicyDoesNotRequestWithinDuration)
     .success(^(id  result) {
+        NSLog(@"success : %@",result);
     })
     .cache(^(id  result) {
+        NSLog(@"cache : %@",result);
     })
     .error(^(NSError *error) {
+        NSLog(@"error : %@",error);
     })
     .start();
 }

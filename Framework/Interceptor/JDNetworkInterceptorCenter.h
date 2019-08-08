@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)stop;
 
-- (void)complete:(void(^)(BOOL complete))completeBlock;
+- (void)complete:(void(^)(BOOL complete, JDNetworkEntity *entity))completeBlock;
 
 
 @end
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)stop;
 
-- (void)complete:(void(^)(BOOL complete))completeBlock;
+- (void)complete:(void(^)(BOOL complete, JDResponse *response))completeBlock;
 
 
 @end
