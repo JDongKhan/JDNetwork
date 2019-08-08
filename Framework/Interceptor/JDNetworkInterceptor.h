@@ -12,10 +12,6 @@
 @class JDNetworkResponseChain;
 @class JDResponse;
 
-/**
- 这块不好设计，因为AF的请求是异步的导致请求和响应流程无法窜起来，等后续有好的想法再优化
-
- */
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDNetworkInterceptor <NSObject>
