@@ -18,6 +18,7 @@
 		69A1287722FACC83001559A2 /* HttpLoggingInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287322FACC83001559A2 /* HttpLoggingInterceptor.m */; };
 		69A1287E22FACCCB001559A2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287A22FACCCB001559A2 /* LoginManager.m */; };
 		69A1287F22FACCCB001559A2 /* JDNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A1287C22FACCCB001559A2 /* JDNetworkManager.m */; };
+		69A1288522FC16BC001559A2 /* pushspec in Resources */ = {isa = PBXBuildFile; fileRef = 69A1288422FC16BC001559A2 /* pushspec */; };
 		FBF81F5230CA5F00BCEFFAC0 /* libPods-JDNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		69A1287B22FACCCB001559A2 /* JDNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDNetworkManager.h; sourceTree = "<group>"; };
 		69A1287C22FACCCB001559A2 /* JDNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDNetworkManager.m; sourceTree = "<group>"; };
 		69A1287D22FACCCB001559A2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		69A1288422FC16BC001559A2 /* pushspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pushspec; sourceTree = "<group>"; };
 		B949149C9AEE057F8C3FE690 /* libPods-JDNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8818AD11420A379C613E3B /* Pods-JDNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDNetwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDNetwork/Pods-JDNetwork.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +64,7 @@
 		4DC747761F20C8E90020A29F = {
 			isa = PBXGroup;
 			children = (
+				69A1288422FC16BC001559A2 /* pushspec */,
 				4DC747811F20C8E90020A29F /* JDNetwork */,
 				4DC747801F20C8E90020A29F /* Products */,
 				D7B0283802988EEE62131489 /* Pods */,
@@ -207,6 +210,7 @@
 				4DC747921F20C8E90020A29F /* LaunchScreen.storyboard in Resources */,
 				4DC7478F1F20C8E90020A29F /* Assets.xcassets in Resources */,
 				4DC7478D1F20C8E90020A29F /* Main.storyboard in Resources */,
+				69A1288522FC16BC001559A2 /* pushspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
