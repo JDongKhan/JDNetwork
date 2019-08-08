@@ -23,6 +23,11 @@
     return chain;
 }
 
+- (instancetype)init {
+    NSAssert(self != nil, @"cant not init");
+    return self;
+}
+
 - (JDNetworkInterceptorCenter *)interceptorCenter {
     if (_interceptorCenter == nil) {
         _interceptorCenter = [[JDNetworkInterceptorCenter alloc] init];
