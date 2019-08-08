@@ -2,14 +2,14 @@
   "name": "JDNetwork",
   "version": "2.4.0",
   "summary": "JDNetwork",
-  "description": "JDRouter",
+  "description": "JDNetwork",
   "homepage": "https://github.com/JDongKhan/JDNetwork.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "wangjindong": "419591321@qq.com"
+    "JD": "419591321@qq.com"
   },
   "platforms": {
     "ios": "8.0"

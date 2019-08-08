@@ -2,7 +2,7 @@
 //  JDNetworkInterceptorCenter.h
 //  AFNetworking
 //
-//  Created by JD on 2019/8/8.
+//  Created by JD on 2017/8/8.
 //
 
 #import <Foundation/Foundation.h>

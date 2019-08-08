@@ -9,6 +9,7 @@
 #import "JDNetwork+Cache.h"
 #import "JDCacheInterceptor.h"
 #import "JDNetworkEntity+Cache.h"
+#import "JDRequest+Cache.h"
 
 @implementation JDNetwork (Cache)
 

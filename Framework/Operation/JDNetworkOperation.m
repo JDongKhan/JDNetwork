@@ -56,7 +56,8 @@
         resultResponse.responseObject = responseObject;
         resultResponse.error = error;
         resultResponse.source = JDResponseNetworkSource;
-        
+
+        //响应链
         JDNetworkResponseChain *chain = [[JDNetworkResponseChain alloc] init];
         chain.response = resultResponse;
         

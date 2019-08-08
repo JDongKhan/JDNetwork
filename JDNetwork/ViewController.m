@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "JDNetwork.h"
+#import <JDNetwork/JDNetwork.h>
+#import <JDNetwork/JDNetwork+Cache.h>
 #import "JDNetworkManager.h"
 #import "LoginInterceptor.h"
-#import "JDNetwork+Cache.h"
 #import "HttpLoggingInterceptor.h"
 #import "XMLInterceptor.h"
 

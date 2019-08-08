@@ -7,18 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JDRequest.h"
+#import "JDNetwork+Cache.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-
-typedef NS_ENUM(NSInteger, JDNetworkCachePolicy) {
-    JDNetworkCachePolicyIgnored = 0,
-    JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable,
-    JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest,
-    JDNetworkCachePolicyDoesNotRequestWithinDuration,
-};
-
 
 @interface JDRequest (Cache)
 

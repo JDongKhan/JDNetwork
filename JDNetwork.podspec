@@ -1,32 +1,32 @@
 
 
-Pod::Spec.new do |s|
+Pod::Spec.new do |spec|
 
-s.name         = "JDNetwork"
-s.version      = '2.4.0' 
-s.summary      = "JDNetwork"
+spec.name         = "JDNetwork"
+spec.version      = '2.4.0'
+spec.summary      = "JDNetwork"
 
-s.description  = <<-DESC
-JDRouter
+spec.description  = <<-DESC
+  JDNetwork
 DESC
 
-s.homepage     = "https://github.com/JDongKhan/JDNetwork.git"
+spec.homepage     = "https://github.com/JDongKhan/JDNetwork.git"
 
-s.license      = { :type => 'MIT', :file => 'LICENSE' }
+spec.license      = { :type => 'MIT', :file => 'LICENSE' }
 
-s.author             = { "wangjindong" => "419591321@qq.com" }
-s.platform     = :ios, "8.0"
+spec.author             = { "JD" => "419591321@qq.com" }
+spec.platform     = :ios, "8.0"
 
-s.source       = { :git => "https://github.com/JDongKhan/JDNetwork.git", :tag => s.version.to_s }
+spec.source       = { :git => "https://github.com/JDongKhan/JDNetwork.git", :tag => spec.version.to_s }
 
+spec.frameworks = 'Foundation'
+spec.requires_arc = true
 
-s.frameworks = 'Foundation'
-s.requires_arc = true
+#spec.prefix_header_contents = '#import "JDNetwork.h"', '#import "JDNetwork+Cache.h"'
 
+spec.source_files = 'Framework/**/*.{h,m}'
+spec.public_header_files = 'Framework/**/*.h'
 
-s.source_files = 'Framework/**/*.{h,m}'
-s.public_header_files = 'Framework/**/*.h'
-s.dependency 'AFNetworking'
-
+spec.dependency 'AFNetworking'
 
 end
