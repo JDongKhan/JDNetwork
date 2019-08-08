@@ -19,6 +19,9 @@
     return 1;
 }
 
+
+//这里是拦截用的，不过也可以做解析器使用去更新chain里面的数据
+
 - (void)response:(JDNetworkResponseChain *)chain {
     JDResponse *response = chain.response;
     if ([response.responseObject isKindOfClass:[NSXMLParser class]]) {
