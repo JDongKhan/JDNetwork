@@ -27,7 +27,7 @@
 
 - (BOOL)shouldContinueRequestAfterLoaded {
     switch (self.cachePolicy) {
-            case JDNetworkCachePolicyLoadCacheDoesNotRequestWithinDuration:
+        case JDNetworkCachePolicyLoadCacheDoesNotRequestWithinDuration:
             return NO;
         default:
             break;
