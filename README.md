@@ -37,8 +37,6 @@ PS:出于兴趣写点快速开发的组件。
     
     JDNetworkCachePolicyIgnored:没有缓存
         
-    JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable：无网使用缓存
-        
     JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest:先加载缓存后请求
         
     JDNetworkCachePolicyDoesNotRequestWithinDuration:使用缓存不再请求
