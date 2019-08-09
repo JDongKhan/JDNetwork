@@ -17,8 +17,11 @@
 
 - (void)request:(JDNetworkChain *)chain {
     JDNetworkEntity *entity = (JDNetworkEntity *)chain.object;
-    NSLog(@"request : %@",entity.request.fullURLString);
-    NSLog(@"parameters : %@",entity.request.parameters);
+    NSDictionary *logInfo = @{
+                              @"url" : entity.request.fullURLString,
+                              @"parameters" : entity.request.parameters
+                              };
+    NSLog(@"request : %@",logInfo);
 }
 
 - (void)response:(JDNetworkChain *)chain  {
