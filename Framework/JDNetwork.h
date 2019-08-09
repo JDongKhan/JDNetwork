@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JDNetwork : NSObject<NSCopying> {
-    __strong JDNetworkEntity *entity;
+    JDNetworkEntity *entity;
 }
 
 /**

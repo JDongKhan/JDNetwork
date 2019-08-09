@@ -27,6 +27,6 @@ spec.requires_arc = true
 spec.source_files = 'Framework/**/*.{h,m}'
 spec.public_header_files = 'Framework/**/*.h'
 
-spec.dependency 'AFNetworking'
+spec.dependency 'AFNetworking', '~> 3.0'
 
 end
