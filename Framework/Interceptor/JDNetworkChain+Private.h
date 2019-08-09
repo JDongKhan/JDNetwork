@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addFinallyInterceptors:(id<JDNetworkInterceptor>)interceptors;
 
-- (void)run:(JDNetworkChain *)chain;
+- (void)run;
 
 
 @end

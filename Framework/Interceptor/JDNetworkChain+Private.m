@@ -18,8 +18,8 @@
     [self->_interceptorCenter addFinallyInterceptors:interceptors];
 }
 
-- (void)run:(JDNetworkChain *)chain {
-    [self->_interceptorCenter run:chain];
+- (void)run {
+    [self->_interceptorCenter runWithChain:self];
 }
 
 

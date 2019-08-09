@@ -34,7 +34,7 @@
     [_finallyInterceptors addObjectsFromArray:interceptors];
 }
 
-- (void)run:(JDNetworkChain *)chain {
+- (void)runWithChain:(JDNetworkChain *)chain {
     _chain = chain;
     _stop = NO;
     _currentIndex = 0;

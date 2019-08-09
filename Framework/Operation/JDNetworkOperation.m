@@ -38,7 +38,7 @@
         }
     }];
     
-    [chain run:chain];
+    [chain run];
 }
 
 - (void)request:(JDNetworkEntity *)entity  {
@@ -66,7 +66,7 @@
                 [entity.response reportResponse:response];
             }
         }];
-        [chain run:chain];
+        [chain run];
         
         self.task_running = NO;
     };
