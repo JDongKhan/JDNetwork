@@ -13,9 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, JDNetworkCachePolicy) {
     JDNetworkCachePolicyIgnored = 0,
-    JDNetworkCachePolicyUsesCacheWhenNetworkUnreachable,
     JDNetworkCachePolicyLoadCacheOnlyAtFirstTimeAndAlwaysRequest,
-    JDNetworkCachePolicyDoesNotRequestWithinDuration,
+    JDNetworkCachePolicyLoadCacheDoesNotRequestWithinDuration,
 };
 
 @interface JDNetwork (Cache)

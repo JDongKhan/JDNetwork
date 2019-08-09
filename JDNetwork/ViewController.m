@@ -111,7 +111,7 @@
     .parametersForKey(@"appid", @"379020")
     .parametersForKey(@"bk_key", @"haha")
     .parametersForKey(@"bk_length", @"600")
-    .cachePolicy(JDNetworkCachePolicyDoesNotRequestWithinDuration)
+    .cachePolicy(JDNetworkCachePolicyLoadCacheDoesNotRequestWithinDuration)
     .success(^(id  result) {
         NSLog(@"success : %@",result);
     })
