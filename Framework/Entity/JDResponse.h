@@ -65,4 +65,11 @@ typedef void (^JDNetworkErrorBlock)(NSError *_Nullable error);
 
 @end
 
+
+@interface JDResponse (Report)
+
+- (void)reportResponse:(JDResponse *)response;
+
+@end
+
 NS_ASSUME_NONNULL_END

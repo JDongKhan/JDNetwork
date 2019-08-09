@@ -6,10 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JDNetworkChain.h"
-#import "JDNetworkInterceptor.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class JDNetworkChain;
+@protocol JDNetworkInterceptor;
+
 
 @interface JDNetworkInterceptorCenter : NSObject
 

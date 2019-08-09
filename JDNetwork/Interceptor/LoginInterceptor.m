@@ -8,7 +8,7 @@
 
 #import "LoginInterceptor.h"
 #import "LoginManager.h"
-#import "JDNetworkChain.h"
+#import "JDNetworkEntity.h"
 
 @implementation LoginInterceptor
 

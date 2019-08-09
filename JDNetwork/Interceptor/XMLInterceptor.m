@@ -8,7 +8,6 @@
 
 #import "XMLInterceptor.h"
 #import "JDResponse.h"
-#import "JDNetworkChain.h"
 
 @implementation XMLInterceptor
 

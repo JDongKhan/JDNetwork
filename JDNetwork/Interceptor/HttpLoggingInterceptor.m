@@ -7,7 +7,7 @@
 //
 
 #import "HttpLoggingInterceptor.h"
-#import "JDNetworkChain.h"
+#import "JDNetworkEntity.h"
 
 @implementation HttpLoggingInterceptor
 

@@ -30,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
-- (void)reportResponse:(JDResponse *)response;
 
 @end
 

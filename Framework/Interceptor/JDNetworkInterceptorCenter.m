@@ -6,6 +6,7 @@
 //
 
 #import "JDNetworkInterceptorCenter.h"
+#import "JDNetworkInterceptor.h"
 
 @implementation JDNetworkInterceptorCenter {
     NSMutableArray<id<JDNetworkInterceptor>> *_interceptors;

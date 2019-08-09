@@ -9,10 +9,8 @@
 #import "JDNetworkOperation.h"
 #import <AFNetworking/AFNetworking.h>
 #import "JDNetworkEntity+Private.h"
-#import "JDNetworkCache.h"
-#import "JDNetworkInterceptor.h"
-#import "JDNetworkInterceptorCenter.h"
 #import "JDNetworkChain+Private.h"
+#import "JDNetworkEntity.h"
 
 @interface JDNetworkOperation()
 

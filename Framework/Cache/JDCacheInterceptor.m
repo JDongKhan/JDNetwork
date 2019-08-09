@@ -9,9 +9,7 @@
 #import "JDCacheInterceptor.h"
 #import "JDNetworkCache.h"
 #import "JDRequest+Cache.h"
-#import "JDNetwork+Cache.h"
 #import "JDResponse+Cache.h"
-#import "JDNetworkChain.h"
 #import "JDNetworkEntity+Private.h"
 #import "JDNetworkChain+Private.h"
 

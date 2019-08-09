@@ -1,1 +1,1 @@
-../../../../Framework/Entity/JDNetworkEntity+Private.h
+../../../../Framework/Operation/JDNetworkEntity+Private.h

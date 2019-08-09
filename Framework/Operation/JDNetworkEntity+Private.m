@@ -88,26 +88,6 @@
     }
 }
 
-- (void)reportResponse:(JDResponse *)response {
-    if (response.error != nil) {
-        [self reportError:response.error];
-        return;
-    }
-    [self reportSuccess:response.responseObject];
-}
-
-- (void)reportSuccess:(id)responseObject {
-    if (self.successBlock != nil) {
-        self.successBlock(responseObject);
-    }
-}
-
-- (void)reportError:(NSError *)error {
-    if (self.errorBlock != nil) {
-        self.errorBlock(error);
-    }
-}
-
 
 @end
 

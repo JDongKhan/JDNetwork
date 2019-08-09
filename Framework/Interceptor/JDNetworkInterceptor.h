@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class JDNetworkChain;
-@class JDNetworkChain;
-@class JDResponse;
+#import "JDNetworkChain.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
