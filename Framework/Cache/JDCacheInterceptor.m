@@ -10,7 +10,7 @@
 #import "JDNetworkCache.h"
 #import "JDRequest+Cache.h"
 #import "JDNetwork+Cache.h"
-#import "JDNetworkEntity+Cache.h"
+#import "JDResponse+Cache.h"
 #import "JDNetworkChain.h"
 
 
@@ -20,21 +20,22 @@
 }
 
 - (NSInteger)priority {
-    return -1;
+    return -999;
 }
 
 - (void)request:(JDNetworkChain *)chain {
     JDNetworkEntity *entity = chain.object;
     JDRequest *request = entity.request;
+    JDResponse *response = entity.response;
      _shouldCache = request.shouldCache;
     //加载缓存
     if (_shouldCache) {
         _keyForCaching = request.keyForCaching;
-        JDResponse *response = [JDNetworkCache cacheWithURL:_keyForCaching];
-        if (response) {
+        id responseObject = [JDNetworkCache cacheWithURL:_keyForCaching];
+        if (responseObject) {
             response.source = JDResponseCacheSource;
-            entity.response = response;
-            [entity reportCacheData:response.responseObject];
+            response.responseObject = responseObject;
+            [response reportCacheData:responseObject];
             
             //判断是否继续请求
             if (![request shouldContinueRequestAfterLoaded]) {
@@ -47,7 +48,7 @@
 - (void)response:(JDNetworkChain *)chain {
     JDResponse *response = chain.object;
     if (response.error == nil && _shouldCache) {
-        [JDNetworkCache saveResponseToCacheFile:response andURL:_keyForCaching];
+        [JDNetworkCache saveResponseToCacheFile:response.responseObject andURL:_keyForCaching];
     }
 }
 

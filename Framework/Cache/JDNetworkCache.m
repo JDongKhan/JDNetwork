@@ -21,7 +21,7 @@
 }
 
 + (BOOL)saveResponseToCacheFile:(id)response andURL:(NSString *)keyForCaching andVersion:(NSString *)version {
-    if(response!=nil) {
+    if(response!=nil && [response respondsToSelector:@selector(encodeWithCoder:)]) {
         BOOL state =[NSKeyedArchiver archiveRootObject:response toFile:[self cacheFilePathWithURL:keyForCaching version:version]];
         if(state) {
             JDNetworkDebugLog(@"缓存写入/更新成功");

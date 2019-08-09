@@ -1,24 +1,23 @@
 //
-//  JDNetworkEntity+Cache.h
-//  JDNetwork
+//  JDResponse+Cache.h
+//  AFNetworking
 //
-//  Created by JD on 2015/8/7.
-//  Copyright © 2015 JD. All rights reserved.
+//  Created by JD on 2019/8/9.
 //
 
-#import "JDNetworkEntity.h"
+#import "JDResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDNetworkEntity (Cache)
+@interface JDResponse (Cache)
 
 /**
  缓存数据
  */
 @property (nonatomic, copy) JDNetworkCompletionBlock cache;
 
-
 - (void)reportCacheData:(id)responseObject;
+
 
 @end
 

@@ -26,6 +26,19 @@
     return self;
 }
 
+static dispatch_queue_t  interceptor_queue() {
+    static dispatch_queue_t interceptor_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        interceptor_queue = dispatch_queue_create("com.jd.interceptor.queue", DISPATCH_QUEUE_CONCURRENT);
+    });
+    return interceptor_queue;
+}
+
+static void interceptor_queue_create_task_safely(dispatch_block_t block) {
+    dispatch_async(interceptor_queue(), block);
+}
+
 - (void)addInterceptors:(NSArray<id<JDNetworkInterceptor>> *)interceptors {
     [_interceptors addObjectsFromArray:interceptors];
 }
@@ -42,6 +55,14 @@
 }
 
 - (void)run {
+    //你可以会在拦截器里面做很多事情
+    //让这个可能耗时的操作放到子线程去
+    interceptor_queue_create_task_safely(^{
+        [self runTask];
+    });
+}
+
+- (void)runTask {
     
     while (!_stop && [self hasNext]) {
         [self next];

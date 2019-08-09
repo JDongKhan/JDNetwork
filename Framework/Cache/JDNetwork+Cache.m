@@ -8,7 +8,7 @@
 
 #import "JDNetwork+Cache.h"
 #import "JDCacheInterceptor.h"
-#import "JDNetworkEntity+Cache.h"
+#import "JDResponse+Cache.h"
 #import "JDRequest+Cache.h"
 
 @implementation JDNetwork (Cache)
@@ -23,7 +23,7 @@
 
 - (JDNetwork *(^)(JDNetworkCompletionBlock cache))cache {
     return ^(JDNetworkCompletionBlock cache){
-        self->entity.cache = cache;
+        self->entity.response.cache = cache;
         return self;
     };
 }
