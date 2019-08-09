@@ -18,6 +18,8 @@
 
 @property (nonatomic, assign) BOOL task_running;
 
+@property (nonatomic, assign) BOOL task_cancel;
+
 @property (nonatomic, strong) NSURLSessionTask *task;
 
 @end
@@ -25,6 +27,7 @@
 @implementation JDNetworkOperation
 
 - (void)start {
+    self.task_cancel = NO;
     //拦截处理request
     JDNetworkEntity *entity = self.entity;
     JDNetworkChain<JDNetworkEntity *> *chain = [JDNetworkChain requestChain];
@@ -42,7 +45,7 @@
 }
 
 - (void)request:(JDNetworkEntity *)entity  {
-    if (self.task_running) {
+    if (self.task_running || self.task_cancel) {
         return;
     }
     NSError *error = nil;
@@ -142,6 +145,8 @@
 }
 
 - (void)cancel {
+    //表示任务已经取消了
+    self.task_cancel = YES;
     [self.task cancel];
 }
 
