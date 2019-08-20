@@ -13,7 +13,7 @@
 
 + (JDNetwork *)baiduService {
     return JDNetwork
-    .baseURLString(@"http://baike.baidu.com")
+    .baseURLString(@"http://api.map.baidu.com/")
     .addInterceptor([[HttpLoggingInterceptor alloc] init])
     .responseEncoding(JDNetworkResponseJSONEncoding);
 }

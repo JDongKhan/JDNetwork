@@ -18,6 +18,12 @@
 }
 
 - (NSString *)fullURLString {
+    if (self.pathOrFullURLString == nil && self.baseURLString == nil) {
+        return nil;
+    }
+    if ([self.pathOrFullURLString hasPrefix:@"http"] || [self.pathOrFullURLString hasPrefix:@"https"]) {
+        return self.pathOrFullURLString;
+    }
     NSString *fullURLString = [NSURL URLWithString:self.pathOrFullURLString relativeToURL:[NSURL URLWithString:self.baseURLString]].absoluteString;
     return fullURLString;
 }

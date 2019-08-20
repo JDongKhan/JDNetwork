@@ -27,7 +27,7 @@
 //        NSXMLParser *parser = response.responseObject;
         //开始解析
         response.responseObject = @{
-                                    @"title" : @"模拟解析过的数据"
+                                    @"title" : @"xml parser"
                                     };
         //解析完成
     }
